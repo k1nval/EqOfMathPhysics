@@ -1,12 +1,14 @@
 ﻿namespace ProblemSolver
 {
+    using System.Collections.Generic;
+
     public class ProblemResult
     {
-        public ProblemResult(double[] result)
+        public ProblemResult(IEnumerable<double> result)
         {
             Result = result;
         }
 
-        public double[] Result { get; set; }
+        public IEnumerable<double> Result { get; set; }
     }
 }

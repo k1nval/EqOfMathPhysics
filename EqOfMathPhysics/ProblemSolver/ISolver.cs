@@ -2,6 +2,6 @@
 {
     public interface ISolver
     {
-        ProblemResult Solve(Problem problem);
+        ProblemResult Solve(IProblem problem);
     }
 }

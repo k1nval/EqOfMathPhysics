@@ -1,0 +1,6 @@
+C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ConsoleUI.exe.config
+C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ConsoleUI.exe
+C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ConsoleUI.pdb
+C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\obj\Debug\ConsoleUI.csprojResolveAssemblyReference.cache
+C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\obj\Debug\ConsoleUI.exe
+C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\obj\Debug\ConsoleUI.pdb

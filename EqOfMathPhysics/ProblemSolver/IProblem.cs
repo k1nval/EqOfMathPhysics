@@ -6,8 +6,12 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Problem
+    public interface IProblem
     {
-        public double H { get; set; }
+        double H { get; set; }
+
+        double L { get; set; }
+
+        int Layer { get; set; }
     }
 }
