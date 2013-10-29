@@ -42,18 +42,12 @@ namespace ProblemSolver
 
         public Layer Next(Layer last)
         {
-            var secondLayer = new Layer(Nx) {Number = last.Number + 1};
-
-            secondLayer[0] = _problem.m1(ht*secondLayer.Number);
-
-            secondLayer[Nx - 1] = _problem.m2(ht*secondLayer.Number);
-
             var b = new List<double>();
             double mid_val = 2 + (hx*hx)/(_problem.K*ht);
             for (int i = 0; i < Nx; ++i)
             {
-                if (i == 0 || i == Nx - 1) b.Add(-1);
-                else b.Add(-mid_val);
+                if (i == 0 || i == Nx - 1) b.Add(1);
+                else b.Add(mid_val);
             }
 
             var a = new List<double>();
@@ -93,24 +87,33 @@ namespace ProblemSolver
                 x.Add(0);
             }
 
-            c[0] = c[0]/b[0];
-            x[0] = x[0]/b[0];
-
-            for (int i = 1; i < Nx - 1; i++)
+            var P = new List<double>();
+            for (int i = 0; i < Nx - 1; ++i)
             {
-                double m = 1.0/(b[i] - a[i]*c[i - 1]);
-                c[i] = c[i]*m;
-                x[i] = (x[i] - a[i]*x[i - 1])*m;
+                if (i == 0) P.Add(c[i] / b[i]);
+                else
+                {
+                    P.Add(c[i] / (b[i] - P[i - 1] * a[i]));
+                }
             }
 
-            for (int i = Nx - 2; i >= 0; i--)
+            var Q = new List<double>();
+            for (int i = 0; i < Nx; ++i)
             {
-                x[i] = x[i] - c[i]*x[i + 1];
+                if (i == 0) Q.Add(d[i] / b[i]);
+                else
+                {
+                    Q.Add((d[i] - Q[i - 1] * a[i]) / (b[i] - P[i - 1] * a[i]));
+                }
             }
 
-            var ans = new Layer {X = x};
-            return ans;
+            x[Nx - 1] = Q[Nx - 1];
+            for (int i = Nx - 2; i >= 0; --i)
+            {
+                x[i] = Q[i] - P[i]*x[i + 1];
+            }
 
+            return new Layer(){X = x};
         }
     }
 }
