@@ -2,6 +2,6 @@
 {
     public interface ISolver
     {
-        Layer Solve(IProblem problem);
+        Layer Solve(int needLayer);
     }
 }

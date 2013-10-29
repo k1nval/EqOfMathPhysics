@@ -3,3 +3,8 @@ C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bi
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.csprojResolveAssemblyReference.cache
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.dll
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.pdb
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.csprojResolveAssemblyReference.cache
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.dll
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.pdb
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\ProblemSolver.dll
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\ProblemSolver.pdb

@@ -2,7 +2,7 @@
 {
     public interface IProblem
     {
-        double H { get; set; }
+        double h { get; set; }
 
         double L { get; set; }
     }

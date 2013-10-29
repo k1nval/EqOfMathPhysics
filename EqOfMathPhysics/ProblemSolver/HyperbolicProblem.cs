@@ -4,12 +4,11 @@
     {
         public HyperbolicProblem(double h, double l, int layer)
         {
-            H = h;
+            this.h = h;
             L = l;
-            Layer = layer;
         }
 
-        public double H { get; set; }
+        public double h { get; set; }
 
         public double L { get; set; }
     }

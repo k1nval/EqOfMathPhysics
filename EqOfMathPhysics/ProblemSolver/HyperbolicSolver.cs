@@ -1,5 +1,6 @@
 ﻿namespace ProblemSolver
 {
+
     public class HyperbolicSolver : ISolver
     {
         private readonly HyperbolicProblem _problem;
@@ -8,10 +9,9 @@
         {
             _problem = problem;
         }
-
-        public ProblemResult Solve(IProblem problem)
+        public Layer Solve(int needLayer)
         {
-            return null;
+            throw new System.NotImplementedException();
         }
     }
 }
