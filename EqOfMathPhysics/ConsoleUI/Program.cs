@@ -11,14 +11,29 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            var problem = new ParabolicProblem(new InputArguments {h = 0.1D, L = 1});
-            problem.m0 = (x) => 4*x*(1 - x);
-            problem.m1 = (t) => 0;
-            problem.m2 = (t) => 0;
-            problem.K = 1;
-            problem.f = (x, t) => 0;
+            /*var problem = new ParabolicProblem(new InputArguments {h = 0.1D, L = 1})
+                {
+                    m0 = (x) => 4*x*(1 - x),
+                    m1 = (t) => 0,
+                    m2 = (t) => 0,
+                    K = 1,
+                    f = (x, t) => 0
+                };
             var solver = new ImplicitParabolicSolver(problem);
-            var l = solver.Solve(6);
+            var l = solver.Solve(6);*/
+
+            var problem = new HyperbolicProblem(new InputArguments() {h = 2.0/3.0, L = 2})
+                {
+                    fi0 = (t) => t,
+                    fil = (t) => t + 2,
+                    psi1 = (x) => x,
+                    psi2 = (x) => 2*x,
+                    a = 1.0
+                };
+
+            var solver = new ExplicitHyperbolicSolver(problem);
+            var l = solver.Solve(2);
+
             for (int i = 0; i < l.X.Count; i++)
             {
                 Console.WriteLine(l[i]);

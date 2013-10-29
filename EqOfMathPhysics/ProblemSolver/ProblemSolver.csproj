@@ -39,8 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImplicitHyperbolicSolver.cs" />
     <Compile Include="ImplicitParabolicSolver.cs" />
-    <Compile Include="HyperbolicSolver.cs" />
+    <Compile Include="ExplicitHyperbolicSolver.cs" />
     <Compile Include="InputArguments.cs" />
     <Compile Include="IProblem.cs" />
     <Compile Include="ISolver.cs" />

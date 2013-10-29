@@ -4,9 +4,14 @@ namespace ProblemSolver
 {
     using System.Collections.Generic;
 
-    public struct Layer
+    public class Layer
     {
-        public Layer(int nx) : this()
+        public Layer()
+        {
+            
+        }
+
+    public Layer(int nx)
         {
             X = new List<double>(nx);
             for (var i = 0; i < nx; ++i)
