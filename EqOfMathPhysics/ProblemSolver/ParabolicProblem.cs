@@ -1,8 +1,8 @@
 ﻿namespace ProblemSolver
 {
-    public class HyperbolicProblem : IProblem
+    public class ParabolicProblem : IProblem
     {
-        public HyperbolicProblem(double h, double l, int layer)
+        public ParabolicProblem(double h, double l, int layer)
         {
             H = h;
             L = l;
