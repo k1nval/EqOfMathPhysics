@@ -17,7 +17,7 @@ namespace ConsoleUI
             problem.m2 = (t) => 0;
             problem.K = 1;
             problem.f = (x, t) => 0;
-            var solver = new ParabolicSolver(problem);
+            var solver = new ImplicitParabolicSolver(problem);
             var l = solver.Solve(6);
             for (int i = 0; i < l.X.Count; i++)
             {

@@ -1,12 +1,12 @@
 ﻿namespace ProblemSolver
 {
-    public class ParabolicSolver : ISolver
+    public class ExplicitParabolicSolver : ISolver
     {
         private readonly ParabolicProblem _problem;
         private double ht, hx;
         private int Nx, Nt;
 
-        public ParabolicSolver(ParabolicProblem problem)
+        public ExplicitParabolicSolver(ParabolicProblem problem)
         {
             _problem = problem;
             hx = problem.h;
@@ -31,6 +31,12 @@
             return firstLayer;
         }
 
+        private double GetValue(Layer last, int i)
+        {
+            return last[i] + _problem.K * ht / (hx * hx) * (last[i + 1] - 2.0 * last[i] + last[i - 1]) + _problem.f(i * hx, last.Number * ht);
+
+        }
+
         public Layer Next(Layer last)
         {
             var secondLayer = new Layer(Nx) { Number = last.Number + 1 };
@@ -41,7 +47,7 @@
 
             for (int i = 1; i < Nx - 1; i++)
             {
-                secondLayer[i] = last[i] + _problem.K*ht/(hx*hx)*(last[i + 1] - 2.0*last[i] + last[i - 1]) + _problem.f(i * hx, last.Number * ht);
+                secondLayer[i] = GetValue(last, i);
             }
 
             return secondLayer;

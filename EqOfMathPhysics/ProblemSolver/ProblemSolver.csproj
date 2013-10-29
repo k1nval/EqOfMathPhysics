@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImplicitParabolicSolver.cs" />
     <Compile Include="HyperbolicSolver.cs" />
     <Compile Include="InputArguments.cs" />
     <Compile Include="IProblem.cs" />
@@ -46,7 +47,7 @@
     <Compile Include="HyperbolicProblem.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="ParabolicProblem.cs" />
-    <Compile Include="ParabolicSolver.cs" />
+    <Compile Include="ExplicitParabolicSolver.cs" />
     <Compile Include="ProblemResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
