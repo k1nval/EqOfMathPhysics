@@ -43,6 +43,7 @@
     <Compile Include="IProblem.cs" />
     <Compile Include="ISolver.cs" />
     <Compile Include="HyperbolicProblem.cs" />
+    <Compile Include="ParabolicProblem.cs" />
     <Compile Include="ProblemResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
