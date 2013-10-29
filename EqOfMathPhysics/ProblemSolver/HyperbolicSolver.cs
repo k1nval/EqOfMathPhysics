@@ -1,6 +1,10 @@
 ﻿namespace ProblemSolver
 {
-    class HyperbolicSolver
+    class HyperbolicSolver : ISolver
     {
+        public ProblemResult Solve(IProblem problem)
+        {
+            
+        }
     }
 }
