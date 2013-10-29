@@ -1,10 +1,10 @@
 ﻿namespace ProblemSolver
 {
-    public class HyperbolicSolver : ISolver
+    public class ParabolicSolver : ISolver
     {
-        private readonly HyperbolicProblem _problem;
+        private readonly ParabolicProblem _problem;
 
-        public HyperbolicSolver(HyperbolicProblem problem)
+        public ParabolicSolver(ParabolicProblem problem)
         {
             _problem = problem;
         }
