@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace ProblemSolver
+﻿namespace ProblemSolver.Solvers
 {
+    using System.Collections.Generic;
+
+    using ProblemSolver.Problems;
+
     public class ImplicitParabolicSolver : ISolver
     {
         private readonly ParabolicProblem _problem;
@@ -10,24 +12,24 @@ namespace ProblemSolver
 
         public ImplicitParabolicSolver(ParabolicProblem problem)
         {
-            _problem = problem;
-            hx = problem.h;
-            Nx = (int) (problem.L/hx) + 1;
-            ht = 1.0 / 600.0; //TODO
+            this._problem = problem;
+            this.hx = problem.h;
+            this.Nx = (int) (problem.L/this.hx) + 1;
+            this.ht = 1.0 / 600.0; //TODO
         }
 
         public Layer Solve(int needLayer)
         {
-            var firstLayer = new Layer(Nx) {Number = 0};
+            var firstLayer = new Layer(this.Nx) {Number = 0};
 
-            for (int i = 0; i < Nx; i++)
+            for (int i = 0; i < this.Nx; i++)
             {
-                firstLayer[i] = _problem.m0(i*hx);
+                firstLayer[i] = this._problem.m0(i*this.hx);
             }
 
             for (int i = 1; i <= needLayer; ++i)
             {
-                firstLayer = Next(firstLayer);
+                firstLayer = this.Next(firstLayer);
             }
 
             return firstLayer;
@@ -35,60 +37,60 @@ namespace ProblemSolver
 
         private double GetValue(Layer last, int i)
         {
-            return last[i] + _problem.K*ht/(hx*hx)*(last[i + 1] - 2.0*last[i] + last[i - 1]) +
-                   _problem.f(i*hx, last.Number*ht);
+            return last[i] + this._problem.K*this.ht/(this.hx*this.hx)*(last[i + 1] - 2.0*last[i] + last[i - 1]) +
+                   this._problem.f(i*this.hx, last.Number*this.ht);
 
         }
 
         public Layer Next(Layer last)
         {
             var b = new List<double>();
-            double mid_val = 2 + (hx*hx)/(_problem.K*ht);
-            for (int i = 0; i < Nx; ++i)
+            double mid_val = 2 + (this.hx*this.hx)/(this._problem.K*this.ht);
+            for (int i = 0; i < this.Nx; ++i)
             {
-                if (i == 0 || i == Nx - 1) b.Add(1);
+                if (i == 0 || i == this.Nx - 1) b.Add(1);
                 else b.Add(mid_val);
             }
 
             var a = new List<double>();
 
-            for (int i = 0; i < Nx; ++i)
+            for (int i = 0; i < this.Nx; ++i)
             {
-                if (i < Nx - 1) a.Add(-1);
+                if (i < this.Nx - 1) a.Add(-1);
                 else a.Add(0);
             }
 
             var c = new List<double>();
-            for (int i = 0; i < Nx - 1; ++i)
+            for (int i = 0; i < this.Nx - 1; ++i)
             {
                 if (i > 0) c.Add(-1);
                 else c.Add(0);
             }
 
             var d = new List<double>();
-            for (int i = 0; i < Nx; ++i)
+            for (int i = 0; i < this.Nx; ++i)
             {
-                if (i == 0) d.Add(_problem.m1(last.Number + 1*ht));
-                else if (i == Nx - 1) d.Add(_problem.m2(last.Number + 1*ht));
+                if (i == 0) d.Add(this._problem.m1(last.Number + 1*this.ht));
+                else if (i == this.Nx - 1) d.Add(this._problem.m2(last.Number + 1*this.ht));
                 else
                 {
-                    d.Add((hx*hx)/(_problem.K*ht)*(last[i] + _problem.f(i*hx, (last.Number + 1)*ht)));
+                    d.Add((this.hx*this.hx)/(this._problem.K*this.ht)*(last[i] + this._problem.f(i*this.hx, (last.Number + 1)*this.ht)));
                 }
             }
 
-            return SolveTridiag(a, b, c, d);
+            return this.SolveTridiag(a, b, c, d);
         }
 
         private Layer SolveTridiag(List<double> a, List<double> b, List<double> c, List<double> d)
         {
-            var x = new List<double>(Nx);
-            for (int i = 0; i < Nx; i++)
+            var x = new List<double>(this.Nx);
+            for (int i = 0; i < this.Nx; i++)
             {
                 x.Add(0);
             }
 
             var P = new List<double>();
-            for (int i = 0; i < Nx - 1; ++i)
+            for (int i = 0; i < this.Nx - 1; ++i)
             {
                 if (i == 0) P.Add(c[i] / b[i]);
                 else
@@ -98,7 +100,7 @@ namespace ProblemSolver
             }
 
             var Q = new List<double>();
-            for (int i = 0; i < Nx; ++i)
+            for (int i = 0; i < this.Nx; ++i)
             {
                 if (i == 0) Q.Add(d[i] / b[i]);
                 else
@@ -107,8 +109,8 @@ namespace ProblemSolver
                 }
             }
 
-            x[Nx - 1] = Q[Nx - 1];
-            for (int i = Nx - 2; i >= 0; --i)
+            x[this.Nx - 1] = Q[this.Nx - 1];
+            for (int i = this.Nx - 2; i >= 0; --i)
             {
                 x[i] = Q[i] - P[i]*x[i + 1];
             }

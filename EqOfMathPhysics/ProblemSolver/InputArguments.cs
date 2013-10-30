@@ -2,6 +2,6 @@
 {
     public struct InputArguments
     {
-        public double h, L;
+        public double h, L, M;
     }
 }

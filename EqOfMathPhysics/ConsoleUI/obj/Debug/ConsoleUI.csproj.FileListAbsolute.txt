@@ -12,3 +12,5 @@ C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\D
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ProblemSolver.dll
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ProblemSolver.pdb
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\obj\Debug\ConsoleUI.pdb
+C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ProblemSolver.dll
+C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ProblemSolver.pdb

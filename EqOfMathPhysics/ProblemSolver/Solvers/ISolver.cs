@@ -1,4 +1,4 @@
-﻿namespace ProblemSolver
+﻿namespace ProblemSolver.Solvers
 {
     public interface ISolver
     {

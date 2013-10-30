@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ProblemSolver
+﻿namespace ProblemSolver
 {
     using System.Collections.Generic;
 
@@ -8,10 +6,9 @@ namespace ProblemSolver
     {
         public Layer()
         {
-            
         }
 
-    public Layer(int nx)
+        public Layer(int nx)
         {
             X = new List<double>(nx);
             for (var i = 0; i < nx; ++i)

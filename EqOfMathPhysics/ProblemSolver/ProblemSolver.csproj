@@ -39,17 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImplicitHyperbolicSolver.cs" />
-    <Compile Include="ImplicitParabolicSolver.cs" />
-    <Compile Include="ExplicitHyperbolicSolver.cs" />
+    <Compile Include="Problems\EllipticProblem.cs" />
+    <Compile Include="Solvers\EllipticSolver.cs" />
+    <Compile Include="Solvers\ImplicitHyperbolicSolver.cs" />
+    <Compile Include="Solvers\ImplicitParabolicSolver.cs" />
+    <Compile Include="Solvers\ExplicitHyperbolicSolver.cs" />
     <Compile Include="InputArguments.cs" />
-    <Compile Include="IProblem.cs" />
-    <Compile Include="ISolver.cs" />
-    <Compile Include="HyperbolicProblem.cs" />
+    <Compile Include="Problems\IProblem.cs" />
+    <Compile Include="Solvers\ISolver.cs" />
+    <Compile Include="Problems\HyperbolicProblem.cs" />
     <Compile Include="Layer.cs" />
-    <Compile Include="ParabolicProblem.cs" />
-    <Compile Include="ExplicitParabolicSolver.cs" />
-    <Compile Include="ProblemResult.cs" />
+    <Compile Include="Problems\ParabolicProblem.cs" />
+    <Compile Include="Solvers\ExplicitParabolicSolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

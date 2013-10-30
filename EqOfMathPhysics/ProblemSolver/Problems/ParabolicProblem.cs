@@ -1,13 +1,13 @@
-﻿using System;
-
-namespace ProblemSolver
+﻿namespace ProblemSolver.Problems
 {
+    using System;
+
     public class ParabolicProblem : IProblem
     {
         public ParabolicProblem(InputArguments inputArguments)
         {
-            h = inputArguments.h;
-            L = inputArguments.L;
+            this.h = inputArguments.h;
+            this.L = inputArguments.L;
         }
 
         public double h { get; set; }

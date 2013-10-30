@@ -1,13 +1,13 @@
-﻿using System;
-
-namespace ProblemSolver
+﻿namespace ProblemSolver.Problems
 {
+    using System;
+
     public class HyperbolicProblem : IProblem
     {
         public HyperbolicProblem(InputArguments inputArguments)
         {
-            h = inputArguments.h;
-            L = inputArguments.L;
+            this.h = inputArguments.h;
+            this.L = inputArguments.L;
         }
 
         public double h { get; set; }
@@ -17,6 +17,7 @@ namespace ProblemSolver
         public double a;
 
         public Func<double, double, double> f;
+
         //U(0, t)
         public Func<double, double> fi0;
 
