@@ -8,3 +8,8 @@ C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\o
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.pdb
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\ProblemSolver.dll
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\ProblemSolver.pdb
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\ProblemSolver.dll
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\ProblemSolver.pdb
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.csprojResolveAssemblyReference.cache
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.dll
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.pdb
