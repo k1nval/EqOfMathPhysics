@@ -11,7 +11,7 @@
             _problem = problem;
             hx = problem.h;
             Nx = (int)(problem.L / hx) + 1;
-            ht = 2.0 / 3.0;//TODO
+            ht = 1.0 / 600.0;//TODO
         }
 
         public Layer Solve(int needLayer)
