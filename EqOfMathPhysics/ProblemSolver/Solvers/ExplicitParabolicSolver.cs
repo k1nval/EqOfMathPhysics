@@ -13,7 +13,7 @@
             this._problem = problem;
             this.hx = problem.h;
             this.Nx = (int)(problem.L/this.hx) + 1;
-            this.ht = 1.0/600.0;//TODO
+            this.ht = 1.0/300.0;//TODO
         }
 
         public Layer Solve(int needLayer)
@@ -35,7 +35,10 @@
 
         private double GetValue(Layer last, int i)
         {
-            return last[i] + this._problem.K * this.ht / (this.hx * this.hx) * (last[i + 1] - 2.0 * last[i] + last[i - 1]) + this._problem.f(i * this.hx, last.Number * this.ht);
+            var ro = this.ht / (this.hx * this.hx);
+            return (ro * last[i - 1]) + ((1.0 - (2.0 * _problem.K) * ro) * last[i]) + (ro * last[i + 1]);
+
+            return last[i] + (this._problem.K * this.ht) / (this.hx * this.hx) * (last[i + 1] - 2.0 * last[i] + last[i - 1]) + this._problem.f(i * this.hx, last.Number * this.ht);
         }
 
         public Layer Next(Layer last)
