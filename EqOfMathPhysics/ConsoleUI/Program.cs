@@ -61,13 +61,13 @@
                     Console.WriteLine(res[i]);
                 }*/
 
-            var parabolicProblem = new ParabolicProblem(new InputArguments { h = 1.0 / 3.0, L = 1.0 })
+            var parabolicProblem = new ParabolicProblem(new InputArguments { h = Math.PI / 3.0D, L = Math.PI})
             {
-                m0 = (x) => x,
-                m1 = (t) => t,
-                m2 = (t) => Math.Cos(2.0 * t),
+                m0 = (x) => Math.Sin(x),
+                m1 = (t) => Math.Sin(t),
+                m2 = (t) => t,
                 f = (x, t) => 0,
-                K = 12.0
+                K = 1
             };
 
             var explicitSolver = new ExplicitParabolicSolver(parabolicProblem);

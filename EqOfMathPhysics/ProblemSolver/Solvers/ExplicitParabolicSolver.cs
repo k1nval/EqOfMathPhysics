@@ -1,4 +1,6 @@
-﻿namespace ProblemSolver.Solvers
+﻿using System;
+
+namespace ProblemSolver.Solvers
 {
     using ProblemSolver.Problems;
 
@@ -8,12 +10,26 @@
         private double ht, hx;
         private int Nx, Nt;
 
-        public ExplicitParabolicSolver(ParabolicProblem problem)
+        public ExplicitParabolicSolver(ParabolicProblem problem) : this(problem, problem.h*problem.h/2.0D)
+        {
+        }
+
+        public ExplicitParabolicSolver(ParabolicProblem problem, double ht)
         {
             this._problem = problem;
             this.hx = problem.h;
             this.Nx = (int)(problem.L/this.hx) + 1;
-            this.ht = 1.0/300.0;//TODO
+            this.ht = ht;
+        }
+
+        private double GetTimeValue(int iterationNumber)
+        {
+            return iterationNumber * this.ht;
+        }
+
+        private double GetXValue(int iterationNumber)
+        {
+            return iterationNumber * this.hx;
         }
 
         public Layer Solve(int needLayer)
@@ -22,7 +38,7 @@
 
             for (int i = 0; i < this.Nx; i++)
             {
-                firstLayer[i] = this._problem.m0(i*this.hx);
+                firstLayer[i] = this._problem.m0(GetXValue(i));
             }
 
             for (int i = 1; i <= needLayer; ++i)
@@ -35,19 +51,16 @@
 
         private double GetValue(Layer last, int i)
         {
-            var ro = this.ht / (this.hx * this.hx);
-            return (ro * last[i - 1]) + ((1.0 - (2.0 * _problem.K) * ro) * last[i]) + (ro * last[i + 1]);
-
-            return last[i] + (this._problem.K * this.ht) / (this.hx * this.hx) * (last[i + 1] - 2.0 * last[i] + last[i - 1]) + this._problem.f(i * this.hx, last.Number * this.ht);
+            return last[i] + this._problem.K * this.ht / (this.hx * this.hx) * (last[i + 1] - 2.0 * last[i] + last[i - 1]) + this._problem.f(GetXValue(i), GetTimeValue(last.Number));
         }
 
         public Layer Next(Layer last)
         {
             var secondLayer = new Layer(this.Nx) { Number = last.Number + 1 };
 
-            secondLayer[0] = this._problem.m1(this.ht * secondLayer.Number);
+            secondLayer[0] = this._problem.m1(GetTimeValue(secondLayer.Number));
 
-            secondLayer[this.Nx - 1] = this._problem.m2(this.ht*secondLayer.Number);
+            secondLayer[this.Nx - 1] = this._problem.m2(GetTimeValue(secondLayer.Number));
 
             for (int i = 1; i < this.Nx - 1; i++)
             {

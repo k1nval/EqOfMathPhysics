@@ -10,12 +10,26 @@
         private double ht, hx;
         private int Nx, Nt;
 
-        public ImplicitParabolicSolver(ParabolicProblem problem)
+        public ImplicitParabolicSolver(ParabolicProblem problem) : this(problem, problem.h*problem.h/2.0D)
+        {
+        }
+
+        public ImplicitParabolicSolver(ParabolicProblem problem, double ht)
         {
             this._problem = problem;
             this.hx = problem.h;
-            this.Nx = (int) (problem.L/this.hx) + 1;
-            this.ht = 1.0 / 600.0; //TODO
+            this.Nx = (int)(problem.L/this.hx) + 1;
+            this.ht = ht;
+        }
+
+        private double GetTimeValue(int iterationNumber)
+        {
+            return iterationNumber * this.ht;
+        }
+
+        private double GetXValue(int iterationNumber)
+        {
+            return iterationNumber * this.hx;
         }
 
         public Layer Solve(int needLayer)
@@ -33,13 +47,6 @@
             }
 
             return firstLayer;
-        }
-
-        private double GetValue(Layer last, int i)
-        {
-            return last[i] + this._problem.K*this.ht/(this.hx*this.hx)*(last[i + 1] - 2.0*last[i] + last[i - 1]) +
-                   this._problem.f(i*this.hx, last.Number*this.ht);
-
         }
 
         public Layer Next(Layer last)
@@ -70,15 +77,17 @@
             var d = new List<double>();
             for (int i = 0; i < this.Nx; ++i)
             {
-                if (i == 0) d.Add(this._problem.m1(last.Number + 1*this.ht));
-                else if (i == this.Nx - 1) d.Add(this._problem.m2(last.Number + 1*this.ht));
+                if (i == 0) d.Add(this._problem.m1(GetTimeValue(last.Number + 1)));
+                else if (i == this.Nx - 1) d.Add(this._problem.m2(GetTimeValue(last.Number + 1)));
                 else
                 {
-                    d.Add((this.hx*this.hx)/(this._problem.K*this.ht)*(last[i] + this._problem.f(i*this.hx, (last.Number + 1)*this.ht)));
+                    d.Add((this.hx * this.hx) / (this._problem.K * this.ht) * (last[i] + this._problem.f(GetXValue(i), GetTimeValue(last.Number + 1))));
                 }
             }
 
-            return this.SolveTridiag(a, b, c, d);
+            var resultLayer =  this.SolveTridiag(a, b, c, d);
+            resultLayer.Number = last.Number + 1;
+            return resultLayer;
         }
 
         private Layer SolveTridiag(List<double> a, List<double> b, List<double> c, List<double> d)
