@@ -72,16 +72,16 @@
 
             var explicitSolver = new ExplicitParabolicSolver(parabolicProblem);
             var implicitSolver = new ImplicitParabolicSolver(parabolicProblem);
-            var l = explicitSolver.Solve(1);
-            var d = implicitSolver.Solve(1);
+            var l = explicitSolver.Solve(3);
+            var d = implicitSolver.Solve(3);
 
-            Console.WriteLine("Неявный:\n");
+            Console.WriteLine("Explicit:\n");
             for (int i = 0; i < d.X.Count; i++)
             {
                 Console.WriteLine(d[i]);
             }
 
-            Console.WriteLine("\nЯвный:\n");
+            Console.WriteLine("\nImplicit:\n");
             for (int i = 0; i < l.X.Count; i++)
             {
                 Console.WriteLine(l[i]);
