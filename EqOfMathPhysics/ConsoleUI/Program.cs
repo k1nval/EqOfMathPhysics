@@ -72,25 +72,17 @@
 
             var explicitSolver = new ExplicitParabolicSolver(parabolicProblem);
             var implicitSolver = new ImplicitParabolicSolver(parabolicProblem);
-            var l = explicitSolver.Solve(3);
-            var d = implicitSolver.Solve(3);
-
-            Console.WriteLine("Explicit:\n");
-            for (int i = 0; i < d.X.Count; i++)
-            {
-                Console.WriteLine(d[i]);
-            }
-
+            var expl = explicitSolver.Solve(3);
+            var impl = implicitSolver.Solve(3);
             double maxFail = 0.0D;
-
-            Console.WriteLine("\nImplicit:\n");
-            for (int i = 0; i < l.X.Count; i++)
+            Console.WriteLine("Explicit:    Implicit:    Failure");
+            for (int i = 0; i < expl.X.Count; i++)
             {
-                Console.WriteLine(l[i]);
-                maxFail = Math.Max(maxFail, Math.Abs(d[i] - l[i]));
+                Console.WriteLine("{0:F8} | {1:F8} | {2:F8}", expl[i], impl[i], Math.Abs(expl[i] - impl[i]));
+                maxFail = Math.Max(maxFail, Math.Abs(expl[i] - impl[i]));
             }
 
-            Console.WriteLine("\nMaximal fail = {0}", maxFail);
+            Console.WriteLine("\nMaximal fail = {0:F6}", maxFail);
 
             Console.ReadLine();
         }
