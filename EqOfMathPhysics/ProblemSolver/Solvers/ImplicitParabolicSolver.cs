@@ -38,7 +38,7 @@
 
             for (int i = 0; i < this.Nx; i++)
             {
-                firstLayer[i] = this._problem.m0(i*this.hx);
+                firstLayer[i] = this._problem.m0(GetXValue(i));
             }
 
             for (int i = 1; i <= needLayer; ++i)

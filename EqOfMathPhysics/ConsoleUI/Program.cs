@@ -81,11 +81,16 @@
                 Console.WriteLine(d[i]);
             }
 
+            double maxFail = 0.0D;
+
             Console.WriteLine("\nImplicit:\n");
             for (int i = 0; i < l.X.Count; i++)
             {
                 Console.WriteLine(l[i]);
+                maxFail = Math.Max(maxFail, Math.Abs(d[i] - l[i]));
             }
+
+            Console.WriteLine("\nMaximal fail = {0}", maxFail);
 
             Console.ReadLine();
         }

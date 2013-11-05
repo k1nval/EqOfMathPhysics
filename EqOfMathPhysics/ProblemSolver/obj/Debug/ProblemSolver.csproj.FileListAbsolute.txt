@@ -12,3 +12,4 @@ C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\b
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\ProblemSolver.pdb
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.dll
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.pdb
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.csprojResolveAssemblyReference.cache
