@@ -67,7 +67,7 @@
                 m1 = (t) => Math.Sin(t),
                 m2 = (t) => t,
                 f = (x, t) => 0,
-                K = 1
+                K = 20
             };
 
             var explicitSolver = new ExplicitParabolicSolver(parabolicProblem);

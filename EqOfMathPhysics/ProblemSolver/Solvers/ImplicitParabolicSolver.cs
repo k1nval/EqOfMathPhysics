@@ -10,7 +10,7 @@
         private double ht, hx;
         private int Nx, Nt;
 
-        public ImplicitParabolicSolver(ParabolicProblem problem) : this(problem, problem.h*problem.h/2.0D)
+        public ImplicitParabolicSolver(ParabolicProblem problem) : this(problem, problem.h*problem.h/2.0D/problem.K)
         {
         }
 

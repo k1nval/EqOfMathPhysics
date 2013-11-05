@@ -10,7 +10,7 @@ namespace ProblemSolver.Solvers
         private double ht, hx;
         private int Nx, Nt;
 
-        public ExplicitParabolicSolver(ParabolicProblem problem) : this(problem, problem.h*problem.h/2.0D)
+        public ExplicitParabolicSolver(ParabolicProblem problem) : this(problem, problem.h*problem.h/2.0D/problem.K)
         {
         }
 
