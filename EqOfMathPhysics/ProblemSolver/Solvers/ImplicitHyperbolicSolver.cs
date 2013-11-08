@@ -1,4 +1,6 @@
-﻿namespace ProblemSolver.Solvers
+﻿using System;
+
+namespace ProblemSolver.Solvers
 {
     using System.Collections.Generic;
 
@@ -10,12 +12,16 @@
         private double ht, hx;
         private int Nx, Nt;
 
-        public ImplicitHyperbolicSolver(HyperbolicProblem problem)
+        public ImplicitHyperbolicSolver(HyperbolicProblem problem) : this(problem, Math.Sqrt(problem.h * problem.h / problem.a) / 2.0D)
+        {
+        }
+
+        public ImplicitHyperbolicSolver(HyperbolicProblem problem, double Ht)
         {
             this._problem = problem;
             this.hx = problem.h;
             this.Nx = (int)(problem.L / this.hx) + 1;
-            this.ht = 1.0 / 600.0; // TODO
+            this.ht = Ht; // TODO
         }
 
         private double GetTimeValue(int iterationNumber)

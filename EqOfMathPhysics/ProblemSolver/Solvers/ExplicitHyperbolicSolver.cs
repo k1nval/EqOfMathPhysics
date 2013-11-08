@@ -1,4 +1,6 @@
-﻿namespace ProblemSolver.Solvers
+﻿using System;
+
+namespace ProblemSolver.Solvers
 {
     using ProblemSolver.Problems;
 
@@ -8,12 +10,16 @@
         private double ht, hx;
         private int Nx, Nt;
 
-        public ExplicitHyperbolicSolver(HyperbolicProblem problem)
+        public ExplicitHyperbolicSolver(HyperbolicProblem problem) : this(problem, Math.Sqrt(problem.h * problem.h / problem.a) / 2.0D)
+        {
+        }
+
+        public ExplicitHyperbolicSolver(HyperbolicProblem problem, double Ht)
         {
             this._problem = problem;
             this.hx = problem.h;
             this.Nx = (int)(problem.L / this.hx) + 1;
-            this.ht = 1.0 / 600.0; // TODO
+            this.ht = Ht; // TODO
         }
 
         private double GetTimeValue(int iterationNumber)
@@ -76,7 +82,9 @@
 
         private double GetValue(Layer firstLayer, Layer secondLayer, int i)
         {
-            return _problem.a * _problem.a * ((ht * ht) / (hx * hx)) * (secondLayer[i + 1] - (2 * secondLayer[i]) + secondLayer[i - 1]) + (2 * secondLayer[i]) - firstLayer[i];
+            double al = (ht*ht)/(hx*hx);
+            //return _problem.a * _problem.a * ((ht * ht) / (hx * hx)) * (secondLayer[i + 1] - (2 * secondLayer[i]) + secondLayer[i - 1]) + (2 * secondLayer[i]) - firstLayer[i];
+            return al*secondLayer[i - 1] + 2.0*(1 - al)*secondLayer[i] + al*secondLayer[i + 1] - firstLayer[i];
         }
     }
 }

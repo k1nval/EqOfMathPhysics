@@ -60,20 +60,28 @@
                 {
                     Console.WriteLine(res[i]);
                 }*/
-
-            var parabolicProblem = new ParabolicProblem(new InputArguments { h = Math.PI / 3.0D, L = Math.PI})
-            {
-                m0 = (x) => Math.Sin(x),
-                m1 = (t) => Math.Sin(t),
-                m2 = (t) => t,
-                f = (x, t) => 0,
-                K = 20
-            };
-
-            var explicitSolver = new ExplicitParabolicSolver(parabolicProblem);
-            var implicitSolver = new ImplicitParabolicSolver(parabolicProblem);
-            var expl = explicitSolver.Solve(3);
-            var impl = implicitSolver.Solve(3);
+//
+//            var parabolicProblem = new ParabolicProblem(new InputArguments { h = 0.001, L = 0.01})
+//            {
+//                m0 = (x) => Math.Sin(x),
+//                m1 = (t) => Math.Sin(t),
+//                m2 = (t) => t,
+//                f = (x, t) => 0,
+//                K = 20
+//            };
+            var problem = new HyperbolicProblem(new InputArguments {h = Math.PI / 18, L = Math.PI})
+                {
+                    fi0 = (t) => 0,
+                    fil = (t) => 0,
+                    psi1 = (x) => x * (Math.PI - x),
+                    psi2 = (x) => 0,
+                    f = (x, t) => 0,
+                    a = 1
+                };
+            var explicitSolver = new ExplicitHyperbolicSolver(problem);
+            var implicitSolver = new ImplicitHyperbolicSolver(problem);
+            var expl = explicitSolver.Solve(100);
+            var impl = implicitSolver.Solve(100);
             double maxFail = 0.0D;
             Console.WriteLine("Explicit:    Implicit:    Failure");
             for (int i = 0; i < expl.X.Count; i++)
