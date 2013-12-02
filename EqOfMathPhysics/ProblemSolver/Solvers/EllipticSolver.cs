@@ -1,85 +1,130 @@
 ﻿namespace ProblemSolver.Solvers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+
+    using SystemsEquationsSolver;
+    using SystemsEquationsSolver.Methods;
 
     using ProblemSolver.Problems;
 
     public class EllipticSolver : ISolver
     {
-        private EllipticProblem _problem;
+        private readonly EllipticProblem ellipticProblem;
 
-        private int _nx;
-
-        private int _ny;
+        private readonly ISystemSolver systemSolver = new DefaultSystemSolver();
 
         public EllipticSolver(EllipticProblem problem)
         {
-            _problem = problem;
-            _nx = (int)(_problem.L / _problem.h) + 1;
-            _ny = (int)(_problem.M / _problem.h) + 1;
+            ellipticProblem = problem;
+            I = (int)(ellipticProblem.L / ellipticProblem.H);
+            J = (int)(ellipticProblem.M / ellipticProblem.H);
+        }
+
+        public int I { get; private set; }
+
+        public int J { get; private set; }
+
+        public double[] Solve()
+        {
+            var size = (I - 1) * (J - 1);
+
+            var matrix = new double[size, size];
+            var b = new double[size];
+
+            var index = 0;
+            var nodes = new Pair[size];
+            for (int i = 1; i <= I - 1; i++)
+            {
+                for (int j = 1; j <= J - 1; j++)
+                {
+                    nodes[index++] = new Pair(i, j);
+                }
+            }
+
+            var k = 1;
+            var l = 1;
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (i == j)
+                    {
+                        matrix[i, j] = 4.0;
+                    }
+                    else if ((nodes[j].X == k + 1 && nodes[j].Y == l) || (nodes[j].X == k - 1 && nodes[j].Y == l)
+                        || (nodes[j].X == k && nodes[j].Y == l + 1) || (nodes[j].X == k && nodes[j].Y == l - 1))
+                    {
+                        matrix[i, j] = -1.0;
+
+                        // граничные точки в столбец свободных членов
+
+                        // левая граница
+                        if (k - 1 == 0)
+                        {
+                            b[i] = ellipticProblem.fi(0, l * ellipticProblem.H);
+                        }
+
+                        // правая граница
+                        if (k + 1 == I)
+                        {
+                            b[i] = ellipticProblem.fi(ellipticProblem.L, l * ellipticProblem.H);
+                        }
+
+                        // нижняя граница
+                        if (l - 1 == 0)
+                        {
+                            b[i] = ellipticProblem.fi(k * ellipticProblem.H, 0);
+                        }
+
+                        // верхняя граница
+                        if (l + 1 == J)
+                        {
+                            b[i] = ellipticProblem.fi(k * ellipticProblem.H, ellipticProblem.M);
+                        }
+                    }
+                }
+
+                l++;
+                if (l == J)
+                {
+                    k++;
+                    l = 1;
+                }
+            }
+
+/*            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    Console.Write("{0:F3} ", matrix[i, j]);
+                }
+
+                Console.Write(" | {0:F3}", b[i]);
+
+                Console.WriteLine();
+            }*/
+
+            var res = systemSolver.SolveSystem(new DefaultSystemEquations(matrix, b), IterativeMethod.Seidel);
+
+            return res.X;
         }
 
         public Layer Solve(int needLayer)
         {
-            var lastLayer = this.PrepareLayer(_ny);
-
-            for (int i = 1; i < _ny - 1; i++)
-            {
-                lastLayer[i] = _problem.fi(i * _problem.h, _ny - 1);
-            }
-
-            var matrix = new double[_nx + 1, _ny];
-            var k = 0;
-            for (int j = 1; j < _ny - 1; j++)
-            {
-                for (int i = 1; i < _nx - 1; i++)
-                {
-                    matrix[k, 0] = i + 1 == _nx - 1 ? _problem.fi(_nx - 1, j * _problem.h) : 1;
-                    matrix[k, 1] = i - 1 == 0 ? _problem.fi(0, j * _problem.h) : 1;
-                    matrix[k, 2] = j + 1 == _ny - 1 ? _problem.fi(i * _problem.h, _ny - 1) : 1;
-                    matrix[k, 3] = j - 1 == 0 ? _problem.fi(i * _problem.h, 0) : 1;
-                    matrix[k, 4] = -4.00;
-                    k++;
-                }
-            }
-
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    var elem = matrix[i, j] < 0.001 && matrix[i, j] > -0.0001 ? 0.00 : matrix[i, j];
-                    Console.Write("{0:F2} ", elem);
-                }
-
-                Console.WriteLine();
-            }
-
-            return default(Layer);
+            throw new NotImplementedException();
         }
 
-        private Layer PrepareLayer(int number)
+        public class Pair
         {
-            var newLayer = new Layer(_nx) { Number = number };
-
-            newLayer[0] = _problem.fi(0, number * _problem.h);
-
-            if (Math.Abs(newLayer[0]) < 0.001)
+            public Pair(int x, int y)
             {
-                newLayer[0] = 0;
+                X = x;
+                Y = y;
             }
 
-            newLayer[_nx - 1] = _problem.fi(_nx - 1, number * _problem.h);
+            public int X { get; set; }
 
-            if (Math.Abs(newLayer[_nx - 1]) < 0.001)
-            {
-                newLayer[_nx - 1] = 0;
-            }
-
-            return newLayer;
+            public int Y { get; set; }
         }
     }
 }

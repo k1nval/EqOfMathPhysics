@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{76BB46DC-9573-437C-BFBC-85B7ADCB9E3C}</ProjectGuid>
+    <ProjectGuid>{BF226936-5572-4C3F-8920-1B5368B9C666}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProblemSolver</RootNamespace>
-    <AssemblyName>ProblemSolver</AssemblyName>
+    <RootNamespace>SystemsEquationsSolver</RootNamespace>
+    <AssemblyName>SystemsEquationsSolver</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,25 +39,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Problems\EllipticProblem.cs" />
-    <Compile Include="Solvers\EllipticSolver.cs" />
-    <Compile Include="Solvers\ImplicitHyperbolicSolver.cs" />
-    <Compile Include="Solvers\ImplicitParabolicSolver.cs" />
-    <Compile Include="Solvers\ExplicitHyperbolicSolver.cs" />
-    <Compile Include="InputArguments.cs" />
-    <Compile Include="Problems\IProblem.cs" />
-    <Compile Include="Solvers\ISolver.cs" />
-    <Compile Include="Problems\HyperbolicProblem.cs" />
-    <Compile Include="Layer.cs" />
-    <Compile Include="Problems\ParabolicProblem.cs" />
-    <Compile Include="Solvers\ExplicitParabolicSolver.cs" />
+    <Compile Include="DefaultSystemEquations.cs" />
+    <Compile Include="DefaultSystemSolver.cs" />
+    <Compile Include="ISystemEquations.cs" />
+    <Compile Include="ISystemSolver.cs" />
+    <Compile Include="Methods\Abstract\IDirectMethods.cs" />
+    <Compile Include="Methods\Abstract\IIterativeMethods.cs" />
+    <Compile Include="Methods\DirectMethod.cs" />
+    <Compile Include="Methods\Directs\TridiagonalMethod.cs" />
+    <Compile Include="Methods\IterativeMethod.cs" />
+    <Compile Include="Methods\Iteratives\JacobiMethods\JacobiMethodsAbstract.cs" />
+    <Compile Include="Methods\Iteratives\JacobiMethods\SeidelMethod.cs" />
+    <Compile Include="Methods\Iteratives\JacobiMethods\SimpleIterationsMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SystemsEquationsSolver\SystemsEquationsSolver.csproj">
-      <Project>{BF226936-5572-4C3F-8920-1B5368B9C666}</Project>
-      <Name>SystemsEquationsSolver</Name>
-    </ProjectReference>
+    <Compile Include="Results\Abstract\ResultAbstract.cs" />
+    <Compile Include="Results\Concrete\DirectResult.cs" />
+    <Compile Include="Results\Concrete\IterativeResult.cs" />
+    <Compile Include="TridiagonalSystemEquations.cs" />
+    <Compile Include="Utils\NormUtil.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

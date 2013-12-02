@@ -1,23 +1,17 @@
 ﻿namespace ProblemSolver
 {
-    using System.Collections.Generic;
-
     public class Layer
     {
         public Layer()
         {
         }
 
-        public Layer(int nx)
+        public Layer(int size)
         {
-            X = new List<double>(nx);
-            for (var i = 0; i < nx; ++i)
-            {
-                X.Add(0);
-            }
+            X = new double[size];
         }
 
-        public IList<double> X { get; set; }
+        public double[] X { get; set; }
 
         public int Number { get; set; }
 

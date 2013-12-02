@@ -2,6 +2,10 @@
 {
     public struct InputArguments
     {
-        public double h, L, M;
+        public double H { get; set; }
+
+        public double L { get; set; }
+
+        public double M { get; set; }
     }
 }
