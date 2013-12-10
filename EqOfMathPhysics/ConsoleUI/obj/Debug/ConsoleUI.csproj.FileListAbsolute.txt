@@ -14,13 +14,15 @@ D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ConsoleUI.pdb
 D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ProblemSolver.dll
 D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ProblemSolver.pdb
 D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\obj\Debug\ConsoleUI.csprojResolveAssemblyReference.cache
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\SystemsEquationsSolver.dll
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\SystemsEquationsSolver.pdb
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ConsoleUI.exe.config
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ConsoleUI.exe
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ConsoleUI.pdb
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ProblemSolver.dll
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\SystemsEquationsSolver.dll
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\ProblemSolver.pdb
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\SystemsEquationsSolver.pdb
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\obj\Debug\ConsoleUI.csprojResolveAssemblyReference.cache
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\obj\Debug\ConsoleUI.exe
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\obj\Debug\ConsoleUI.pdb
-D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\SystemsEquationsSolver.dll
-D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\SystemsEquationsSolver.pdb

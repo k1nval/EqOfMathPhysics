@@ -10,20 +10,20 @@
 
         private readonly double hx;
 
-        public ExplicitParabolicSolver(ParabolicProblem problem)
-            : this(problem, problem.H * problem.H / 2.0D / problem.K)
+        public ExplicitParabolicSolver(ParabolicProblem problem, double Hx)
+            : this(problem, Hx, Hx * Hx / 2.0D / problem.K)
         {
         }
 
-        public ExplicitParabolicSolver(ParabolicProblem parabolicProblem, double htau)
+        public ExplicitParabolicSolver(ParabolicProblem parabolicProblem, double Hx, double Ht)
         {
             problem = parabolicProblem;
-            hx = problem.H;
+            hx = Hx;
             Nx = (int)(problem.L / hx) + 1;
-            ht = htau;
+            ht = Ht;
         }
 
-        public int Nx { get; set; }
+        private int Nx { get; set; }
 
         public Layer Solve(int needLayer)
         {
@@ -47,7 +47,7 @@
             return last[i] + ((problem.K * ht) / (hx * hx)) * (last[i + 1] - (2.0 * last[i]) + last[i - 1]) + problem.f(GetXValue(i), GetTimeValue(last.Number));
         }
 
-        public Layer Next(Layer last)
+        private Layer Next(Layer last)
         {
             var secondLayer = new Layer(Nx) { Number = last.Number + 1 };
 

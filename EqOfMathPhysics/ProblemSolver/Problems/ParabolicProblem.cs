@@ -2,17 +2,15 @@
 {
     using System;
 
-    public class ParabolicProblem : IProblem
+    public class ParabolicProblem
     {
-        public ParabolicProblem(InputArguments inputArguments)
+        public ParabolicProblem()
         {
-            H = inputArguments.H;
-            L = inputArguments.L;
         }
 
-        public double H { get; set; }
+        public double H { get; private set; }
 
-        public double L { get; set; }
+        public double L { get; private set; }
 
         public double K { get; set; }
 

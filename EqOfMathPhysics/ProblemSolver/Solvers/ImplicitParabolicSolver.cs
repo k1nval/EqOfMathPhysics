@@ -17,17 +17,17 @@
 
         private readonly double hx;
 
-        public ImplicitParabolicSolver(ParabolicProblem problem)
-            : this(problem, problem.H * problem.H / 2.0D / problem.K)
+        public ImplicitParabolicSolver(ParabolicProblem problem, double Hx)
+            : this(problem, Hx, Hx * Hx / 2.0D / problem.K)
         {
         }
 
-        public ImplicitParabolicSolver(ParabolicProblem parabolicProblem, double ht)
+        public ImplicitParabolicSolver(ParabolicProblem parabolicProblem, double Hx, double Ht)
         {
             problem = parabolicProblem;
-            hx = problem.H;
+            hx = Hx;
             Nx = (int)(problem.L / hx) + 1;
-            this.ht = ht;
+            this.ht = Ht;
         }
 
         public int Nx { get; private set; }
@@ -49,7 +49,7 @@
             return firstLayer;
         }
 
-        public Layer Next(Layer last)
+        private Layer Next(Layer last)
         {
             var b = new List<double>();
             double midVal = 2 + ((hx * hx) / (problem.K * ht));

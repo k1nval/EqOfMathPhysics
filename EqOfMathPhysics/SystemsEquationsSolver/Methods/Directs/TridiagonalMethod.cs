@@ -25,7 +25,7 @@
             a = systemEquations.A.ToList();
             b = systemEquations.B1.ToList();
             c = systemEquations.C.ToList();
-            d = systemEquations.B.ToList();
+            d = systemEquations.D.ToList();
             n = d.Count;
             result.Method = "TridiagonalMethod";
         }

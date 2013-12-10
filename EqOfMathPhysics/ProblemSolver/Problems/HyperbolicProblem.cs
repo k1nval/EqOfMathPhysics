@@ -2,15 +2,11 @@
 {
     using System;
 
-    public class HyperbolicProblem : IProblem
+    public class HyperbolicProblem
     {
-        public HyperbolicProblem(InputArguments inputArguments)
+        public HyperbolicProblem()
         {
-            H = inputArguments.H;
-            L = inputArguments.L;
         }
-
-        public double H { get; set; }
 
         public double L { get; set; }
 

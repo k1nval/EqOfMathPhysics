@@ -10,7 +10,7 @@
     {
         public static void Main()
         {
-            var ellipticProblem = new EllipticProblem(new InputArguments { H = 1.0 / 3.0, L = 1.0, M = 1.0 })
+            /*var ellipticProblem = new EllipticProblem(new InputArguments { H = 1.0 / 3.0, L = 1.0, M = 1.0 })
                                       {
                                           fi = (x, y) => Math.Abs(y) < 1E-10 ? Math.Sin(Math.PI * x) : 0.00
                                       };
@@ -24,6 +24,33 @@
                 Console.WriteLine("u{0}{1} = {2:F5}", i + 1, k + 1, answer[k++]);
             }
 
+            */
+
+            var hyperbolicProblem = new HyperbolicProblem()
+                {
+                    A = 1,
+                    L = Math.PI,
+                    f = (x, t) => 0,
+                    fi0 = (t) => Math.Sin(t),
+                    fil = (t) => Math.Cos(t),
+                    psi1 = (x) => Math.Sin(2.0*x),
+                    psi2 = (x) => 2.0
+                };
+            double maxFail = 0.0D;
+            var explicitSolver = new ExplicitHyperbolicSolver(hyperbolicProblem, Math.PI / 3.0, Math.PI / 3.0);
+            var implicitSolver = new ImplicitHyperbolicSolver(hyperbolicProblem, Math.PI / 3.0, Math.PI / 3.0);
+            var expl = explicitSolver.Solve(2001);
+            var impl = implicitSolver.Solve(2001);
+
+            Console.WriteLine("Explicit:    Implicit:    Failure");
+            for (int i = 0; i < expl.X.Length; i++)
+            {
+
+                Console.WriteLine("{0:F8} | {1:F8} | {2:F8}", expl[i], impl[i], Math.Abs(expl[i] - impl[i]));
+                maxFail = Math.Max(maxFail, Math.Abs(expl[i] - impl[i]));
+            }
+
+            Console.WriteLine("\nMaximal fail = {0:F6}", maxFail);
             Console.ReadLine();
         }
     }

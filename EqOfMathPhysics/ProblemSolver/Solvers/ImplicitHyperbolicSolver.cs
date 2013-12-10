@@ -18,16 +18,17 @@
 
         private readonly double hx;
 
-        public ImplicitHyperbolicSolver(HyperbolicProblem problem) : this(problem, Math.Sqrt(problem.H * problem.H / problem.A) / 2.0D)
+        public ImplicitHyperbolicSolver(HyperbolicProblem problem, double Hx)
+            : this(problem, Hx, Math.Sqrt(Hx * Hx / problem.A) / 2.0D)
         {
         }
 
-        public ImplicitHyperbolicSolver(HyperbolicProblem hyperbolicProblem, double htau)
+        public ImplicitHyperbolicSolver(HyperbolicProblem hyperbolicProblem, double Hx, double Ht)
         {
             problem = hyperbolicProblem;
-            hx = problem.H;
+            hx = Hx;
             Nx = (int)(problem.L / hx) + 1;
-            ht = htau; // TODO tau
+            ht = Ht; // TODO tau
         }
 
         public int Nx { get; set; }
@@ -56,7 +57,7 @@
             return secondLayer;
         }
 
-        public void Next(ref Layer firstLayer, ref Layer secondLayer)
+        private void Next(ref Layer firstLayer, ref Layer secondLayer)
         {
             var b = new List<double>();
 
@@ -126,7 +127,7 @@
             secondLayer = new Layer { X = systemResult.X, Number = firstLayer.Number + 1 };
         }
 
-        public Layer PrepareLayer(int number)
+        private Layer PrepareLayer(int number)
         {
             var newLayer = new Layer(Nx) { Number = number };
 

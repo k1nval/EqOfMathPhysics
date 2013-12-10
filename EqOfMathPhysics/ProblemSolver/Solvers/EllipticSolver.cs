@@ -13,11 +13,14 @@
 
         private readonly ISystemSolver systemSolver = new DefaultSystemSolver();
 
-        public EllipticSolver(EllipticProblem problem)
+        private readonly double hx;
+
+        public EllipticSolver(EllipticProblem problem, double Hx)
         {
             ellipticProblem = problem;
-            I = (int)(ellipticProblem.L / ellipticProblem.H);
-            J = (int)(ellipticProblem.M / ellipticProblem.H);
+            I = (int)(ellipticProblem.L / Hx);
+            J = (int)(ellipticProblem.M / Hx);
+            hx = Hx;
         }
 
         public int I { get; private set; }
@@ -61,25 +64,25 @@
                         // левая граница
                         if (k - 1 == 0)
                         {
-                            b[i] = ellipticProblem.fi(0, l * ellipticProblem.H);
+                            b[i] = ellipticProblem.fi(0, l * hx);
                         }
 
                         // правая граница
                         if (k + 1 == I)
                         {
-                            b[i] = ellipticProblem.fi(ellipticProblem.L, l * ellipticProblem.H);
+                            b[i] = ellipticProblem.fi(ellipticProblem.L, l * hx);
                         }
 
                         // нижняя граница
                         if (l - 1 == 0)
                         {
-                            b[i] = ellipticProblem.fi(k * ellipticProblem.H, 0);
+                            b[i] = ellipticProblem.fi(k * hx, 0);
                         }
 
                         // верхняя граница
                         if (l + 1 == J)
                         {
-                            b[i] = ellipticProblem.fi(k * ellipticProblem.H, ellipticProblem.M);
+                            b[i] = ellipticProblem.fi(k * hx, ellipticProblem.M);
                         }
                     }
                 }
