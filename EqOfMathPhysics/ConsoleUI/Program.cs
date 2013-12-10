@@ -29,20 +29,21 @@
             var hyperbolicProblem = new HyperbolicProblem()
                 {
                     A = 1,
-                    L = Math.PI,
+                    L = 3,
                     f = (x, t) => 0,
                     fi0 = (t) => Math.Sin(t),
-                    fil = (t) => Math.Cos(t),
-                    psi1 = (x) => Math.Sin(2.0*x),
+                    fil = (t) => t + 6.0,
+                    psi1 = (x) => x * x,
                     psi2 = (x) => 2.0
                 };
+            int needLayer = 0;
             double maxFail = 0.0D;
-            var explicitSolver = new ExplicitHyperbolicSolver(hyperbolicProblem, Math.PI / 3.0, Math.PI / 3.0);
-            var implicitSolver = new ImplicitHyperbolicSolver(hyperbolicProblem, Math.PI / 3.0, Math.PI / 3.0);
-            var expl = explicitSolver.Solve(2001);
-            var impl = implicitSolver.Solve(2001);
+            var explicitSolver = new ExplicitHyperbolicSolver(hyperbolicProblem, 1.0, 1.0);
+            var implicitSolver = new ImplicitHyperbolicSolver(hyperbolicProblem, 1.0, 1.0);
+            var expl = explicitSolver.Solve(needLayer);
+            var impl = implicitSolver.Solve(needLayer);
 
-            Console.WriteLine("Explicit:    Implicit:    Failure");
+            Console.WriteLine("Layer # {0}\nExplicit:    Implicit:    Failure", needLayer);
             for (int i = 0; i < expl.X.Length; i++)
             {
 

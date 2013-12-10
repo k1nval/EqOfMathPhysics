@@ -41,7 +41,7 @@
             {
                 firstLayer[i] = problem.psi1(GetXValue(i));
             }
-
+            if (needLayer == 0) return firstLayer;
             var secondLayer = PrepareLayer(1);
 
             for (int i = 1; i < Nx - 1; i++)
