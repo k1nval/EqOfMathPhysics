@@ -2,7 +2,7 @@
 {
     using ProblemSolver.Problems;
 
-    public class ExplicitParabolicSolver : ISolver
+    public class ExplicitParabolicSolver : ISolver<Layer>
     {
         private readonly ParabolicProblem problem;
 
@@ -27,6 +27,11 @@
 
         public Layer Solve(int needLayer)
         {
+            if (!problem.IsAgreed)
+            {
+                return null;
+            }
+
             var firstLayer = new Layer(Nx) { Number = 0 };
 
             for (int i = 0; i < Nx; i++)

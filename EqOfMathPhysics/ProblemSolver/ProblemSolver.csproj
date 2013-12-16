@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EllipticResult.cs" />
     <Compile Include="Problems\EllipticProblem.cs" />
     <Compile Include="Solvers\EllipticSolver.cs" />
     <Compile Include="Solvers\ImplicitHyperbolicSolver.cs" />

@@ -1,13 +1,11 @@
 ﻿namespace ProblemSolver.Solvers
 {
-    using System;
-
     using SystemsEquationsSolver;
     using SystemsEquationsSolver.Methods;
 
     using ProblemSolver.Problems;
 
-    public class EllipticSolver : ISolver
+    public class EllipticSolver : ISolver<EllipticResult>
     {
         private readonly EllipticProblem ellipticProblem;
 
@@ -27,8 +25,13 @@
 
         public int J { get; private set; }
 
-        public double[] Solve()
+        public EllipticResult Solve(int needLayer)
         {
+            if (!ellipticProblem.IsAgreed)
+            {
+                return null;
+            }
+
             var size = (I - 1) * (J - 1);
 
             var matrix = new double[size, size];
@@ -55,7 +58,7 @@
                         matrix[i, j] = 4.0;
                     }
                     else if ((nodes[j].X == k + 1 && nodes[j].Y == l) || (nodes[j].X == k - 1 && nodes[j].Y == l)
-                        || (nodes[j].X == k && nodes[j].Y == l + 1) || (nodes[j].X == k && nodes[j].Y == l - 1))
+                             || (nodes[j].X == k && nodes[j].Y == l + 1) || (nodes[j].X == k && nodes[j].Y == l - 1))
                     {
                         matrix[i, j] = -1.0;
 
@@ -95,26 +98,22 @@
                 }
             }
 
-/*            for (int i = 0; i < size; i++)
-            {
-                for (int j = 0; j < size; j++)
-                {
-                    Console.Write("{0:F3} ", matrix[i, j]);
-                }
+            var result = new EllipticResult();
 
-                Console.Write(" | {0:F3}", b[i]);
+            var seidel = systemSolver.SolveSystem(new DefaultSystemEquations(matrix, b), IterativeMethod.Seidel);
+            var simpleIterations = systemSolver.SolveSystem(
+                new DefaultSystemEquations(matrix, b),
+                IterativeMethod.SimpleIterations);
 
-                Console.WriteLine();
-            }*/
+            result.SeidelX = seidel.X;
+            result.CountSeidelIterations = seidel.CountIterations;
 
-            var res = systemSolver.SolveSystem(new DefaultSystemEquations(matrix, b), IterativeMethod.Seidel);
+            result.SimpleIterationsX = simpleIterations.X;
+            result.CountSimpleIterations = simpleIterations.CountIterations;
 
-            return res.X;
-        }
+            result.Count = seidel.X.Length;
 
-        public Layer Solve(int needLayer)
-        {
-            throw new NotImplementedException();
+            return result;
         }
 
         public class Pair

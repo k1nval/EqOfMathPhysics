@@ -5,5 +5,7 @@
         double H { get; set; }
 
         double L { get; set; }
+
+        bool IsAgreed { get; }
     }
 }

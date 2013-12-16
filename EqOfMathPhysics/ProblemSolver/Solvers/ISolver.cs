@@ -1,7 +1,8 @@
 ﻿namespace ProblemSolver.Solvers
 {
-    public interface ISolver
+    public interface ISolver<out T>
     {
-        Layer Solve(int needLayer);
+        // todo fix needLayer
+        T Solve(int needLayer);
     }
 }

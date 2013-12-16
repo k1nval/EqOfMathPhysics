@@ -2,15 +2,23 @@
 {
     using System;
 
-    public class HyperbolicProblem
+    public class HyperbolicProblem : IProblem
     {
-        public HyperbolicProblem()
-        {
-        }
+        public const double Eps = 1E-10;
+
+        public double H { get; set; }
 
         public double L { get; set; }
 
         public double A { get; set; }
+
+        public bool IsAgreed
+        {
+            get
+            {
+                return Check();
+            }
+        }
 
         public Func<double, double, double> f { get; set; }
 
@@ -25,5 +33,15 @@
 
         // dU(x, 0)/dt
         public Func<double, double> psi2 { get; set; }
+
+        public bool Check()
+        {
+            if (Math.Abs(psi1(0) - fi0(0)) < Eps && Math.Abs(psi2(L) - fil(0)) < Eps)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

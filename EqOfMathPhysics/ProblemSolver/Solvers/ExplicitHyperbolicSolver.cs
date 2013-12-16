@@ -4,7 +4,7 @@
 
     using ProblemSolver.Problems;
 
-    public class ExplicitHyperbolicSolver : ISolver
+    public class ExplicitHyperbolicSolver : ISolver<Layer>
     {
         private readonly HyperbolicProblem _problem;
 
@@ -29,6 +29,11 @@
 
         public Layer Solve(int needLayer)
         {
+            if (!_problem.IsAgreed)
+            {
+                return null;
+            }
+
             var firstLayer = PrepareLayer(0);
 
             for (int i = 1; i < Nx - 1; i++)

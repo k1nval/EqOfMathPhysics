@@ -2,7 +2,6 @@
 {
     using System;
 
-    using ProblemSolver;
     using ProblemSolver.Problems;
     using ProblemSolver.Solvers;
 
@@ -10,49 +9,114 @@
     {
         public static void Main()
         {
-            /*var ellipticProblem = new EllipticProblem(new InputArguments { H = 1.0 / 3.0, L = 1.0, M = 1.0 })
-                                      {
-                                          fi = (x, y) => Math.Abs(y) < 1E-10 ? Math.Sin(Math.PI * x) : 0.00
-                                      };
+            Elliptic();
 
-            var ellipticSolver = new EllipticSolver(ellipticProblem);
-            var answer = ellipticSolver.Solve();
-            var k = 0;
+           // Hyperbolic();
 
-            for (int i = 0; i < answer.GetLength(0); i++)
+            Console.ReadKey();
+        }
+
+        public static void Elliptic()
+        {
+            do
             {
-                Console.WriteLine("u{0}{1} = {2:F5}", i + 1, k + 1, answer[k++]);
+                Console.Write("h = ");
+                var h = double.Parse(Console.ReadLine());
+
+                Console.Write("L = ");
+                var L = double.Parse(Console.ReadLine());
+
+                Console.Write("M = ");
+                var M = double.Parse(Console.ReadLine());
+
+                var ellipticProblem = new EllipticProblem
+                {
+                    L = L,
+                    M = M,
+                    fi = (x, y) => Math.Abs(y) < 1E-10 ? Math.Sin(Math.PI * x) : 0.00,
+                    psi1 = (x) => Math.Sin(Math.PI * x),
+                    psi2 = (y) => Math.Abs(y) < 1E-10 ? Math.Sin(Math.PI * L) : 0.00,
+                    psi3 = (x) => 0.0,
+                    psi4 = (y) => 0.00
+                };
+
+                var ellipticSolver = new EllipticSolver(ellipticProblem, h);
+
+                var answer = ellipticSolver.Solve(0);
+                if (answer == null)
+                {
+                    Console.WriteLine("Условия согласования не выполнены");
+                    return;
+                }
+
+                var k = 0;
+
+                Console.WriteLine("SimpleIterations:    Sediel:   Failure:");
+                var x1 = answer.SimpleIterationsX;
+                var x2 = answer.SeidelX;
+                var maxFail = 0.00;
+                for (int i = 0; i < answer.Count; i++)
+                {
+                    Console.WriteLine("{0:F8}       | {1:F8} | {2:F8}", x1[i], x2[i], Math.Abs(x1[i] - x2[i]));
+                    maxFail = Math.Max(maxFail, Math.Abs(x1[i] - x2[i]));
+                }
+                
+                Console.WriteLine("\nMax Fail = {0:F6}", maxFail);
+                Console.WriteLine(answer.Conclusion + Environment.NewLine);
+                Console.WriteLine(new string('-', 50));
             }
+            while (true);
+        }
 
-            */
+        public static void Hyperbolic()
+        {
+            do
+            {
+                Console.Write("h = ");
+                var h = double.Parse(Console.ReadLine());
 
-            var hyperbolicProblem = new HyperbolicProblem()
+                Console.Write("L = ");
+                var L = double.Parse(Console.ReadLine());
+
+                Console.Write("J = ");
+                var J = int.Parse(Console.ReadLine());
+
+                var hyperbolicProblem = new HyperbolicProblem()
                 {
                     A = 1,
-                    L = 3,
+                    L = L,
                     f = (x, t) => 0,
                     fi0 = (t) => Math.Sin(t),
                     fil = (t) => t + 6.0,
                     psi1 = (x) => x * x,
                     psi2 = (x) => 2.0
                 };
-            int needLayer = 0;
-            double maxFail = 0.0D;
-            var explicitSolver = new ExplicitHyperbolicSolver(hyperbolicProblem, 1.0, 1.0);
-            var implicitSolver = new ImplicitHyperbolicSolver(hyperbolicProblem, 1.0, 1.0);
-            var expl = explicitSolver.Solve(needLayer);
-            var impl = implicitSolver.Solve(needLayer);
 
-            Console.WriteLine("Layer # {0}\nExplicit:    Implicit:    Failure", needLayer);
-            for (int i = 0; i < expl.X.Length; i++)
-            {
+                int needLayer = J;
+                double maxFail = 0.0D;
+                var explicitSolver = new ExplicitHyperbolicSolver(hyperbolicProblem, h, h / 2.0);
+                var implicitSolver = new ImplicitHyperbolicSolver(hyperbolicProblem, h, h / 2.0);
+                var expl = explicitSolver.Solve(needLayer);
 
-                Console.WriteLine("{0:F8} | {1:F8} | {2:F8}", expl[i], impl[i], Math.Abs(expl[i] - impl[i]));
-                maxFail = Math.Max(maxFail, Math.Abs(expl[i] - impl[i]));
+                if (expl == null)
+                {
+                    Console.WriteLine("Условия согласования не выполнены");
+                    return;
+                }
+                var impl = implicitSolver.Solve(needLayer);
+
+                Console.WriteLine("Layer # {0}\nExplicit:    Implicit:    Failure", needLayer);
+                for (int i = 0; i < expl.X.Length; i++)
+                {
+
+                    Console.WriteLine("{0:F8} | {1:F8} | {2:F8}", expl[i], impl[i], Math.Abs(expl[i] - impl[i]));
+                    maxFail = Math.Max(maxFail, Math.Abs(expl[i] - impl[i]));
+                }
+
+                Console.WriteLine("\nMaximal fail = {0:F6}", maxFail);
+                Console.WriteLine(new string('-', 50) + Environment.NewLine);
             }
-
-            Console.WriteLine("\nMaximal fail = {0:F6}", maxFail);
-            Console.ReadLine();
+            while (true);
         }
     }
 }
