@@ -9,11 +9,61 @@
     {
         public static void Main()
         {
-            Elliptic();
+            //Elliptic();
 
            // Hyperbolic();
 
+            ThreeDParabolic();
+
             Console.ReadKey();
+        }
+
+        public static void ThreeDParabolic()
+        {
+            do
+            {
+                Console.Write("h = ");
+                var h = double.Parse(Console.ReadLine());
+
+                Console.Write("L = ");
+                var L = double.Parse(Console.ReadLine());
+
+                Console.Write("M = ");
+                var M = double.Parse(Console.ReadLine());
+
+                Console.Write("J = ");
+                var J = int.Parse(Console.ReadLine());
+
+                var parabolicProblem = new ThreeDParabolicProblem()
+                                           {
+                                               H = h,
+                                               L = L,
+                                               M = M,
+                                               Fi = (x, y) => (x * x) + Math.Sin(y),
+                                               Psi1 = (y, t) => y + t + (2 * L),
+                                               Psi2 = (y, t) => (2 * L) + t + y,
+                                               Psi3 = (x, t) => 2 * L,
+                                               Psi4 = (x, t) => (2 * L) + M
+                                           };
+                var parabolicSolver = new ThreeDParabolicSolver(parabolicProblem);
+                var ans = parabolicSolver.Solve(J);
+                if (ans == null)
+                {
+                    Console.WriteLine("Условия согласования не выполнены");
+                }
+                else
+                {
+                    Console.WriteLine("Layer # {0}", ans.Number);
+                    for (int i = 0; i < ans.Xy.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < ans.Xy.GetLength(1); j++)
+                        {
+                            Console.WriteLine("u[{0}, {1}] = {2:F6}", i, j, ans[i, j]);
+                        }
+                    }
+                }
+            }
+            while (true);
         }
 
         public static void Elliptic()
