@@ -45,6 +45,7 @@
                                                Psi3 = (x, t) => 2 * L,
                                                Psi4 = (x, t) => (2 * L) + M
                                            };
+                //var parabolicSolver = new TwoDImplicitParabolicSolver(parabolicProblem);
                 var parabolicSolver = new TwoDExplicitParabolicSolver(parabolicProblem);
                 var ans = parabolicSolver.Solve(J);
                 if (ans == null)

@@ -16,8 +16,8 @@
             h = problem.H;
             L = problem.L;
             M = problem.M;
-            I = (int)(L / h) + 1;
-            J = (int)(M / h) + 1;
+            I = (int)(L / h);
+            J = (int)(M / h);
             tau = (h * h) / 4.0;
         }
 
@@ -55,35 +55,35 @@
 
         private TwoDLayer Next(TwoDLayer firstLayer)
         {
-            var secondLayer = new TwoDLayer(I, J);
+            var secondLayer = new TwoDLayer(I + 1, J + 1);
 
             // передняя грань
-            for (int i = 0; i < I; i++)
+            for (int i = 0; i <= I; i++)
             {
-                secondLayer[i, 0] = problem.Psi3(i * h, firstLayer.Number * tau);
+                secondLayer[i, 0] = problem.Psi(i * h, 0 * h, (firstLayer.Number + 1) * tau);
             }
 
             // задняя грань
-            for (int i = 0; i < I; i++)
+            for (int i = 0; i <= I; i++)
             {
-                secondLayer[i, I - 1] = problem.Psi4(i * h, firstLayer.Number * tau);
+                secondLayer[i, J] = problem.Psi(i * h, J * h, (firstLayer.Number + 1) * tau);
             }
 
             // левая грань
-            for (int i = 0; i < J; i++)
+            for (int i = 0; i <= J; i++)
             {
-                secondLayer[0, i] = problem.Psi1(i * h, firstLayer.Number * tau);
+                secondLayer[0, i] = problem.Psi(0 * h, i * h, (firstLayer.Number + 1) * tau);
             }
 
             // правая грань
-            for (int i = 0; i < J; i++)
+            for (int i = 0; i <= J; i++)
             {
-                secondLayer[J - 1, i] = problem.Psi2(i * h, firstLayer.Number * tau);
+                secondLayer[I, i] = problem.Psi(I * h, i * h, (firstLayer.Number + 1) * tau);
             }
 
-            for (int i = 1; i < I - 1; i++)
+            for (int i = 1; i < I; i++)
             {
-                for (int j = 1; j < J - 1; j++)
+                for (int j = 1; j < J; j++)
                 {
                     secondLayer[i, j] = GetValue(i, j, firstLayer);
                 }
@@ -102,16 +102,16 @@
 
         private TwoDLayer PrepareLayer()
         {
-            var layer = new TwoDLayer(I, J);
-            for (int i = 0; i < I; i++)
+            var layer = new TwoDLayer(I + 1, J + 1);
+            for (int i = 0; i <= I; i++)
             {
-                for (int j = 0; j < J; j++)
+                for (int j = 0; j <= J; j++)
                 {
                     layer[i, j] = problem.Fi(i * h, j * h);
                 }
             }
 
-            layer.Number = 1;
+            layer.Number = 0;
 
             return layer;
         }

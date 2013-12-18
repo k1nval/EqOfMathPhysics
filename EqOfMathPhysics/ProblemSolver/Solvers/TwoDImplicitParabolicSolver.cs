@@ -25,8 +25,8 @@ namespace ProblemSolver.Solvers
             h = problem.H;
             L = problem.L;
             M = problem.M;
-            I = (int)(L / h) + 1;
-            J = (int)(M / h) + 1;
+            I = (int)(L / h);
+            J = (int)(M / h);
             tau = (h * h) / 4.0;
         }
 
@@ -78,12 +78,12 @@ namespace ProblemSolver.Solvers
                     }
                     else
                     {
-                        B[i*(J + 1) + j] = Math.Pow(h, 4)/tau;
-                        A[i*(J + 1) + j, i*(J + 1) + j] = Math.Pow(h, 4)/tau + 2*tau + 2*tau;
-                        A[i*(J + 1) + j, (i + 1)*(J + 1) + j] = -tau;
-                        A[i * (J + 1) + j, (i - 1) * (J + 1) + j] = -tau;
-                        A[i * (J + 1) + j, (i) * (J + 1) + (j + 1)] = -tau;
-                        A[i * (J + 1) + j, (i) * (J + 1) + (j - 1)] = -tau;
+                        B[i*(J + 1) + j] = Math.Pow(h, 4) * firstLayer[i,j];
+                        A[i*(J + 1) + j, i*(J + 1) + j] = Math.Pow(h, 4) + 4*tau*h*h;
+                        A[i * (J + 1) + j, (i + 1) * (J + 1) + j] = -tau * h * h;
+                        A[i * (J + 1) + j, (i - 1) * (J + 1) + j] = -tau * h * h;
+                        A[i * (J + 1) + j, (i) * (J + 1) + (j + 1)] = -tau * h * h;
+                        A[i * (J + 1) + j, (i) * (J + 1) + (j - 1)] = -tau * h * h;
                     }
                 }
             }
@@ -98,6 +98,8 @@ namespace ProblemSolver.Solvers
                     newLayer[i, j] = X[i*(J + 1) + j];
                 }
             }
+
+            newLayer.Number = firstLayer.Number + 1;
 
             return newLayer;
 
@@ -114,7 +116,7 @@ namespace ProblemSolver.Solvers
                 }
             }
 
-            layer.Number = 1;
+            layer.Number = 0;
 
             return layer;
         }
