@@ -37,17 +37,6 @@
 
         public bool Check()
         {
-            var a = Psi3(L, 0);
-            var b = Psi2(0, 0);
-
-            var c = Psi3(0, 0);
-            var d = Psi1(0, 0);
-
-            var f = Psi4(0, 0);
-            var g = Psi1(M, 0);
-
-            var k = Psi4(L, 0);
-            var l = Psi2(M, 0);
             if (Math.Abs(Psi3(L, 0) - Psi2(0, 0)) < Eps & Math.Abs(Psi3(0, 0) - Psi1(0, 0)) < Eps 
                 && Math.Abs(Psi4(0, 0) - Psi1(M, 0)) < Eps && Math.Abs(Psi4(L, 0) - Psi2(M, 0)) < Eps)
             {
