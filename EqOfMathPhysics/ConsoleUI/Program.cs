@@ -34,7 +34,7 @@
                 Console.Write("J = ");
                 var J = int.Parse(Console.ReadLine());
 
-                var parabolicProblem = new TwoDExplicitParabolicProblem()
+                var parabolicProblem = new TwoDParabolicProblem()
                                            {
                                                H = h,
                                                L = L,

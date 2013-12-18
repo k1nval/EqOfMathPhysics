@@ -4,13 +4,13 @@
 
     public class TwoDExplicitParabolicSolver : ISolver<TwoDLayer>
     {
-        private readonly TwoDExplicitParabolicProblem problem;
+        private readonly TwoDParabolicProblem problem;
 
         private readonly double tau;
 
         private readonly double h;
 
-        public TwoDExplicitParabolicSolver(TwoDExplicitParabolicProblem parabolicProblem)
+        public TwoDExplicitParabolicSolver(TwoDParabolicProblem parabolicProblem)
         {
             problem = parabolicProblem;
             h = problem.H;
