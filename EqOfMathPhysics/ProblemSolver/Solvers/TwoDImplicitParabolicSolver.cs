@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SystemsEquationsSolver;
+using SystemsEquationsSolver.Methods;
 using ProblemSolver.Problems;
 
 namespace ProblemSolver.Solvers
 {
-    class TwoDImplicitParabolicSolver
+    public class TwoDImplicitParabolicSolver
     {
+        private ISystemSolver systemSolver = new DefaultSystemSolver();
+
         private readonly TwoDParabolicProblem problem;
 
         private readonly double tau;
@@ -60,6 +64,7 @@ namespace ProblemSolver.Solvers
 
         private TwoDLayer Next(TwoDLayer firstLayer)
         {
+            var newLayer = new TwoDLayer(I + 1, J + 1);
             var A = new double[(I + 1) * (J + 1), (I + 1) * (J + 1)];
             var B = new double[(I + 1) * (J + 1)];
             for (int i = 0; i <= I; ++i)
@@ -68,16 +73,34 @@ namespace ProblemSolver.Solvers
                 {
                     if (i == 0 || i == I || j == 0 || j == J)
                     {
-                        A[i, j] = 1;
+                        A[i*(J + 1) + j, i*(J + 1) + j] = 1;
                         B[i*(J + 1) + j] = problem.Psi(h*i, h*j, (firstLayer.Number + 1)*tau);
                     }
                     else
                     {
-                        
+                        B[i*(J + 1) + j] = Math.Pow(h, 4)/tau;
+                        A[i*(J + 1) + j, i*(J + 1) + j] = Math.Pow(h, 4)/tau + 2*tau + 2*tau;
+                        A[i*(J + 1) + j, (i + 1)*(J + 1) + j] = -tau;
+                        A[i * (J + 1) + j, (i - 1) * (J + 1) + j] = -tau;
+                        A[i * (J + 1) + j, (i) * (J + 1) + (j + 1)] = -tau;
+                        A[i * (J + 1) + j, (i) * (J + 1) + (j - 1)] = -tau;
                     }
                 }
-
             }
+
+
+            var seidel = systemSolver.SolveSystem(new DefaultSystemEquations(A, B), IterativeMethod.Seidel);
+            var X = seidel.X;
+            for (int i = 0; i <= I; ++i)
+            {
+                for (int j = 0; j <= J; ++j)
+                {
+                    newLayer[i, j] = X[i*(J + 1) + j];
+                }
+            }
+
+            return newLayer;
+
         }
 
         private TwoDLayer PrepareLayer()

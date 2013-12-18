@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="EllipticResult.cs" />
     <Compile Include="Problems\EllipticProblem.cs" />
-    <Compile Include="Problems\TwoDExplicitParabolicProblem.cs" />
+    <Compile Include="Problems\TwoDParabolicProblem.cs" />
     <Compile Include="Problems\TwoDImplicitParabolicProblem.cs" />
     <Compile Include="Solvers\EllipticSolver.cs" />
     <Compile Include="Solvers\ImplicitHyperbolicSolver.cs" />
