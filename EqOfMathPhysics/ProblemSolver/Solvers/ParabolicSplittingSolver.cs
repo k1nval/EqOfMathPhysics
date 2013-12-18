@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProblemSolver.Solvers
+﻿namespace ProblemSolver.Solvers
 {
     using ProblemSolver.Problems;
 
     public class ParabolicSplittingSolver : ISolver<TwoDLayer>
     {
-        private TwoDParabolicProblem problem;
+        private readonly TwoDParabolicProblem problem;
 
         public int I { get; set; }
 
@@ -69,25 +63,25 @@ namespace ProblemSolver.Solvers
             // передняя грань
             for (int i = 0; i <= I; i++)
             {
-                thirdLayer[i, 0] = problem.Psi(i * h, 0 * h, (firstLayer.Number + 1) * tau);
+                thirdLayer[i, 0] = problem.Psi(i * h, 0 * h, (firstLayer.Number) * tau);
             }
 
             // задняя грань
             for (int i = 0; i <= I; i++)
             {
-                thirdLayer[i, J] = problem.Psi(i * h, J * h, (firstLayer.Number + 1) * tau);
+                thirdLayer[i, J] = problem.Psi(i * h, J * h, (firstLayer.Number) * tau);
             }
 
             // левая грань
             for (int i = 0; i <= J; i++)
             {
-                thirdLayer[0, i] = problem.Psi(0 * h, i * h, (firstLayer.Number + 1) * tau);
+                thirdLayer[0, i] = problem.Psi(0 * h, i * h, (firstLayer.Number) * tau);
             }
 
             // правая грань
             for (int i = 0; i <= J; i++)
             {
-                thirdLayer[I, i] = problem.Psi(I * h, i * h, (firstLayer.Number + 1) * tau);
+                thirdLayer[I, i] = problem.Psi(I * h, i * h, (firstLayer.Number) * tau);
             }
 
             for (int i = 1; i <= I - 1; i++)
@@ -98,7 +92,7 @@ namespace ProblemSolver.Solvers
                 }
             }
 
-            thirdLayer.Number = ++secondLayer.Number;
+            thirdLayer.Number = firstLayer.Number;
 
             return thirdLayer;
         }
@@ -110,25 +104,25 @@ namespace ProblemSolver.Solvers
             // передняя грань
             for (int i = 0; i <= I; i++)
             {
-                secondLayer[i, 0] = problem.Psi(i * h, 0 * h, (firstLayer.Number + 1) * tau);
+                secondLayer[i, 0] = problem.Psi(i * h, 0 * h, (firstLayer.Number) * tau);
             }
 
             // задняя грань
             for (int i = 0; i <= I; i++)
             {
-                secondLayer[i, J] = problem.Psi(i * h, J * h, (firstLayer.Number + 1) * tau);
+                secondLayer[i, J] = problem.Psi(i * h, J * h, (firstLayer.Number) * tau);
             }
 
             // левая грань
             for (int i = 0; i < J; i++)
             {
-                secondLayer[0, i] = problem.Psi(0 * h, i * h, (firstLayer.Number + 1) * tau);
+                secondLayer[0, i] = problem.Psi(0 * h, i * h, (firstLayer.Number) * tau);
             }
 
             // правая грань
             for (int i = 0; i <= J; i++)
             {
-                secondLayer[I, i] = problem.Psi(I * h, i * h, (firstLayer.Number + 1) * tau);
+                secondLayer[I, i] = problem.Psi(I * h, i * h, (firstLayer.Number) * tau);
             }
 
             for (int i = 1; i <= I - 1; i++)
