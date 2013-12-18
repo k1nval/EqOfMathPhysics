@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class ThreeDParabolicProblem : IProblem
+    public class TwoDExplicitParabolicProblem : IProblem
     {
         public const double Eps = 0.001;
 

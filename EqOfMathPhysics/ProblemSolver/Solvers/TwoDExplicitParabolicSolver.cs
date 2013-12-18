@@ -2,15 +2,15 @@
 {
     using ProblemSolver.Problems;
 
-    public class ThreeDParabolicSolver : ISolver<ThreeDLayer>
+    public class TwoDExplicitParabolicSolver : ISolver<TwoDLayer>
     {
-        private readonly ThreeDParabolicProblem problem;
+        private readonly TwoDExplicitParabolicProblem problem;
 
         private readonly double tau;
 
         private readonly double h;
 
-        public ThreeDParabolicSolver(ThreeDParabolicProblem parabolicProblem)
+        public TwoDExplicitParabolicSolver(TwoDExplicitParabolicProblem parabolicProblem)
         {
             problem = parabolicProblem;
             h = problem.H;
@@ -29,7 +29,7 @@
 
         public int J { get; set; }
 
-        public ThreeDLayer Solve(int needLayer)
+        public TwoDLayer Solve(int needLayer)
         {
             if (!problem.IsAgreed)
             {
@@ -53,9 +53,9 @@
             return firstLayer;
         }
 
-        private ThreeDLayer Next(ThreeDLayer firstLayer)
+        private TwoDLayer Next(TwoDLayer firstLayer)
         {
-            var secondLayer = new ThreeDLayer(I, J);
+            var secondLayer = new TwoDLayer(I, J);
 
             // передняя грань
             for (int i = 0; i < I; i++)
@@ -94,15 +94,15 @@
             return secondLayer;
         }
 
-        private double GetValue(int i, int j, ThreeDLayer layer)
+        private double GetValue(int i, int j, TwoDLayer layer)
         {
             var r = tau / (h * h);
             return layer[i, j] + (r * (layer[i + 1, j] + layer[i - 1, j] + layer[i, j - 1] + layer[i, j + 1] - (4 * layer[i, j])));
         }
 
-        private ThreeDLayer PrepareLayer()
+        private TwoDLayer PrepareLayer()
         {
-            var layer = new ThreeDLayer(I, J);
+            var layer = new TwoDLayer(I, J);
             for (int i = 0; i < I; i++)
             {
                 for (int j = 0; j < J; j++)

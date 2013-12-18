@@ -1,8 +1,8 @@
 ﻿namespace ProblemSolver
 {
-    public class ThreeDLayer
+    public class TwoDLayer
     {
-        public ThreeDLayer(int n, int m)
+        public TwoDLayer(int n, int m)
         {
             Xy = new double[n, m];
         }
