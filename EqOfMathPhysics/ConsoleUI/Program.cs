@@ -13,12 +13,12 @@
 
            // Hyperbolic();
 
-            ThreeDParabolic();
+            Splitting();
 
             Console.ReadKey();
         }
 
-        public static void ThreeDParabolic()
+        public static void Splitting()
         {
             do
             {
@@ -35,33 +35,42 @@
                 var J = int.Parse(Console.ReadLine());
 
                 var parabolicProblem = new TwoDParabolicProblem()
-                                           {
-                                               H = h,
-                                               L = L,
-                                               M = M,
-                                               Fi = (x, y) => (x * x) + Math.Sin(y),
-                                               Psi1 = (y, t) => y + t + (2 * L),
-                                               Psi2 = (y, t) => (2 * L) + t + y,
-                                               Psi3 = (x, t) => 2 * L,
-                                               Psi4 = (x, t) => (2 * L) + M
-                                           };
-                //var parabolicSolver = new TwoDImplicitParabolicSolver(parabolicProblem);
-                var parabolicSolver = new TwoDExplicitParabolicSolver(parabolicProblem);
+                {
+                    H = h,
+                    L = L,
+                    M = M,
+                    Fi = (x, y) => (x * x) + Math.Sin(y),
+                    Psi1 = (y, t) => y + t + (2 * L),
+                    Psi2 = (y, t) => (2 * L) + t + y,
+                    Psi3 = (x, t) => 2 * L,
+                    Psi4 = (x, t) => (2 * L) + M
+                };
+                var parabolicSolver = new ParabolicSplittingSolver(parabolicProblem);
+                var parabolicSolver1 = new TwoDExplicitParabolicSolver(parabolicProblem);
+                var parabolicSolver2 = new TwoDImplicitParabolicSolver(parabolicProblem);
                 var ans = parabolicSolver.Solve(J);
+                var ans1 = parabolicSolver1.Solve(J);
+                var ans2 = parabolicSolver2.Solve(J);
+
                 if (ans == null)
                 {
                     Console.WriteLine("Условия согласования не выполнены");
                 }
                 else
                 {
+                    var maxFail = 0.00;
                     Console.WriteLine("Layer # {0}", ans.Number);
+                    Console.WriteLine("Explicit:        Implicit:       Splitting:      Failure(Splitting and Explicit):");
                     for (int i = 0; i < ans.Xy.GetLength(0); i++)
                     {
                         for (int j = 0; j < ans.Xy.GetLength(1); j++)
                         {
-                            Console.WriteLine("u[{0}, {1}] = {2:F6}", i, j, ans[i, j]);
+                            Console.WriteLine("{0:F6}   |   {1:F6}      |   {2:F6}  |   {3:F6}  |", ans1[i, j], ans2[i, j], ans[i, j], Math.Abs(ans1[i, j] - ans[i, j]));
+                            maxFail = Math.Max(maxFail, Math.Abs(ans1[i, j] - ans[i, j]));
                         }
                     }
+
+                    Console.WriteLine("Max Fail = {0:F6}", maxFail);
                 }
             }
             while (true);

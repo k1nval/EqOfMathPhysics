@@ -55,6 +55,7 @@
     <Compile Include="Problems\ParabolicProblem.cs" />
     <Compile Include="Solvers\ExplicitParabolicSolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solvers\ParabolicSplittingSolver.cs" />
     <Compile Include="Solvers\TwoDExplicitParabolicSolver.cs" />
     <Compile Include="Solvers\TwoDImplicitParabolicSolver.cs" />
     <Compile Include="TwoDLayer.cs" />
