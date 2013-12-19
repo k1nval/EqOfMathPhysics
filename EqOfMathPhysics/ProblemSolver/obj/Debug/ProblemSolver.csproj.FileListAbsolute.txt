@@ -19,3 +19,6 @@ C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\o
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\obj\Debug\ProblemSolver.pdb
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\SystemsEquationsSolver.dll
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\SystemsEquationsSolver.pdb
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.dll
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.pdb
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.xml

@@ -4,7 +4,7 @@
 
     public class TwoDParabolicProblem : IProblem
     {
-        public const double Eps = 0.001;
+        public const double Eps = 0.00001;
 
         public double H { get; set; }
 

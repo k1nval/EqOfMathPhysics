@@ -28,3 +28,9 @@ C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\obj\D
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\obj\Debug\ConsoleUI.pdb
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\SystemsEquationsSolver.dll
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\SystemsEquationsSolver.pdb
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.dll
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.IO.dll
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.pdb
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.xml
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.IO.pdb
+C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.IO.xml

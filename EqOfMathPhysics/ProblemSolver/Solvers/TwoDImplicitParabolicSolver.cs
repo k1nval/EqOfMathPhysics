@@ -2,8 +2,9 @@
 
 using SystemsEquationsSolver;
 using SystemsEquationsSolver.Methods;
+using MathNet.Numerics.LinearAlgebra.Double;
 using ProblemSolver.Problems;
-
+using MathNet.Numerics.LinearAlgebra.Double.Solvers.Iterative;
 namespace ProblemSolver.Solvers
 {
     public class TwoDImplicitParabolicSolver
@@ -18,6 +19,7 @@ namespace ProblemSolver.Solvers
 
         public TwoDImplicitParabolicSolver(TwoDParabolicProblem parabolicProblem)
         {
+            
             problem = parabolicProblem;
             h = problem.H;
             L = problem.L;
@@ -64,6 +66,8 @@ namespace ProblemSolver.Solvers
             var newLayer = new TwoDLayer(I + 1, J + 1);
             var A = new double[(I + 1) * (J + 1), (I + 1) * (J + 1)];
             var B = new double[(I + 1) * (J + 1)];
+            //var A = new SparseMatrix((I + 1) * (J + 1), (I + 1) * (J + 1));
+            //var B = new SparseVector((I + 1) * (J + 1));
             for (int i = 0; i <= I; ++i)
             {
                 for (int j = 0; j <= J; ++j)
@@ -85,14 +89,14 @@ namespace ProblemSolver.Solvers
                 }
             }
 
-
+  
             var seidel = systemSolver.SolveSystem(new DefaultSystemEquations(A, B), IterativeMethod.Seidel);
             var X = seidel.X;
             for (int i = 0; i <= I; ++i)
             {
                 for (int j = 0; j <= J; ++j)
                 {
-                    newLayer[i, j] = X[i*(J + 1) + j];
+                    newLayer[i, j] = X[i * (J + 1) + j];
                 }
             }
 
