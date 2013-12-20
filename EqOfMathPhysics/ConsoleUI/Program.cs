@@ -39,14 +39,14 @@
                     H = h,
                     L = L,
                     M = M,
-                    Fi = (x, y) => (x * x) + Math.Sin(y),
+                    Fi = (x, y) => (2 * L) + y,
                     Psi1 = (y, t) => y + t + (2 * L),
                     Psi2 = (y, t) => (2 * L) + t + y,
                     Psi3 = (x, t) => 2 * L,
                     Psi4 = (x, t) => (2 * L) + M
                 };
-                var parabolicSolver = new ParabolicSplittingSolver(parabolicProblem);
-                var parabolicSolver1 = new TwoDExplicitParabolicSolver(parabolicProblem);
+                var parabolicSolver = new ParabolicSplittingSolver(parabolicProblem, Math.PI / 4.0);
+                var parabolicSolver1 = new TwoDExplicitParabolicSolver(parabolicProblem, Math.PI / 4.0);
                 var parabolicSolver2 = new TwoDImplicitParabolicSolver(parabolicProblem);
                 var ans = parabolicSolver.Solve(J);
                 var ans1 = parabolicSolver1.Solve(J);

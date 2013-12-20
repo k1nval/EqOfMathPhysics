@@ -23,19 +23,16 @@
         /// <summary>
         /// fi(x,y,0)
         /// </summary>
- 
         public Func<double, double, double> Fi { get; set; }
  
         /// <summary>
         /// u(0,y,t)
         /// </summary>
- 
         public Func<double, double, double> Psi1 { get; set; } 
 
         /// <summary>
         ///  u(L, y, t)
         /// </summary>
-
         public Func<double, double, double> Psi2 { get; set; }
  
         /// <summary>
@@ -51,14 +48,14 @@
         /// <summary>
         /// u(x, y, t)
         /// </summary>
-        /// <returns></returns>
         public Func<double, double, double, double> Psi { get; set; }
 
 
         public bool Check()
         {
-            if (Math.Abs(Psi3(L, 0) - Psi2(0, 0)) < Eps & Math.Abs(Psi3(0, 0) - Psi1(0, 0)) < Eps 
-                && Math.Abs(Psi4(0, 0) - Psi1(M, 0)) < Eps && Math.Abs(Psi4(L, 0) - Psi2(M, 0)) < Eps)
+            if (Math.Abs(Psi3(0, 0) - Psi1(0, 0)) < Eps && Math.Abs(Psi3(L, 0) - Psi2(0, 0)) < Eps && Math.Abs(Psi4(0, 0) - Psi1(M, 0)) < Eps
+                && Math.Abs(Psi4(L, 0) - Psi2(M, 0)) < Eps && Math.Abs(Fi(0, 0) - Psi3(0, 0)) < Eps && Math.Abs(Fi(L, 0) - Psi3(L, 0)) < Eps
+                && Math.Abs(Fi(0, M) - Psi4(0, 0)) < Eps && Math.Abs(Fi(L, M) - Psi4(L, 0)) < Eps)
             {
                 Psi = (x, y, t) =>
                     {
