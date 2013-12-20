@@ -40,3 +40,9 @@ C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\De
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.xml
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.IO.pdb
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.IO.xml
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.dll
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.IO.dll
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.pdb
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.xml
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.IO.pdb
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ConsoleUI\bin\Debug\MathNet.Numerics.IO.xml

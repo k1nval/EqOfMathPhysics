@@ -25,3 +25,6 @@ C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\b
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.dll
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.pdb
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.xml
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.dll
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.pdb
+D:\Github\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.xml

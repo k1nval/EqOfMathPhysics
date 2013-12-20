@@ -6,6 +6,7 @@ namespace ConsoleUI
 
     using ProblemSolver.Problems;
     using ProblemSolver.Solvers;
+    using ProblemSolver.Solvers.RotateSC;
 
     public class Program
     {
@@ -17,12 +18,14 @@ namespace ConsoleUI
 
             //Splitting();
 
-            Polar();
+          //  Polar();
+
+            Rotate();
 
             Console.ReadKey();
         }
 
-        public static void Splitting()
+        public static void Rotate()
         {
             do
             {
@@ -49,12 +52,12 @@ namespace ConsoleUI
                     Psi3 = (x, t) => 2 * L,
                     Psi4 = (x, t) => (2 * L) + M
                 };
-                var parabolicSolver = new ParabolicSplittingSolver(parabolicProblem, Math.PI / 4.0);
-                var parabolicSolver1 = new TwoDExplicitParabolicSolver(parabolicProblem, Math.PI / 4.0);
-                var parabolicSolver2 = new TwoDImplicitParabolicSolver(parabolicProblem);
+                var parabolicSolver = new TwoDSplitParabolicRotateSolver(parabolicProblem, Math.PI / 4.0);
+                var parabolicSolver1 = new TwoDExplicitParabolicRotateSolver(parabolicProblem, Math.PI / 4.0);
+                //var parabolicSolver2 = new TwoDImplicitParabolicSolver(parabolicProblem);
                 var ans = parabolicSolver.Solve(J);
                 var ans1 = parabolicSolver1.Solve(J);
-                var ans2 = parabolicSolver2.Solve(J);
+                //var ans2 = parabolicSolver2.Solve(J);
 
                 if (ans == null)
                 {
@@ -64,12 +67,12 @@ namespace ConsoleUI
                 {
                     var maxFail = 0.00;
                     Console.WriteLine("Layer # {0}", ans.Number);
-                    Console.WriteLine("Explicit:        Implicit:       Splitting:      Failure(Splitting and Explicit):");
+                    Console.WriteLine("Explicit:        Split:       Failure(Splitting and Explicit):");
                     for (int i = 0; i < ans.Xy.GetLength(0); i++)
                     {
                         for (int j = 0; j < ans.Xy.GetLength(1); j++)
                         {
-                            Console.WriteLine("{0:F6}   |   {1:F6}      |   {2:F6}  |   {3:F6}  |", ans1[i, j], ans2[i, j], ans[i, j], Math.Abs(ans1[i, j] - ans[i, j]));
+                            Console.WriteLine("{0:F6}   |   {1:F6}      |   {2:F6}  |", ans1[i, j], ans[i, j], Math.Abs(ans1[i, j] - ans[i, j]));
                             maxFail = Math.Max(maxFail, Math.Abs(ans1[i, j] - ans[i, j]));
                         }
                     }
