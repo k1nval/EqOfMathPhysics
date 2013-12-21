@@ -96,14 +96,14 @@ namespace ConsoleUI
                 var parabolicProblem = new TwoDParabolicPolarProblem()
                 {
                     L = L,
-                    Fi = (r, al) => Math.Cos(r),
-                    Psi = (r, al, t) => Math.Cos(r) + Math.Sin(t)
+                    Fi = (r, al) => r,
+                    Psi = (r, al, t) => r + t
                 };
                 var parabolicSolver = new TwoDExplicitParabolicPolarSolver(parabolicProblem, h);
-                //var parabolicSolver1 = new TwoDExplicitParabolicSolver(parabolicProblem, Math.PI / 4.0);
+                var parabolicSolver1 = new TwoDSplitParabolicPolarSolver(parabolicProblem, h);
                 var parabolicSolver2 = new TwoDImplicitParabolicPolarSolver(parabolicProblem, h);
                 var ans = parabolicSolver.Solve(J);
-                var ans1 = ans;
+                var ans1 = parabolicSolver1.Solve(J);
                 var ans2 = parabolicSolver2.Solve(J);
                 var tmp = 666;
                 if (ans == null)
@@ -120,7 +120,7 @@ namespace ConsoleUI
                         for (int j = 0; j < ans.Xy.GetLength(1); j++)
                         {
                             Console.WriteLine("{0:F6}   |   {1:F6}      |   {2:F6}  |   {3:F6}  |", ans1[i, j], ans2[i, j], ans[i, j], Math.Abs(ans1[i, j] - ans[i, j]));
-                            maxFail = Math.Max(maxFail, Math.Abs(ans1[i, j] - ans[i, j]));
+                            maxFail = Math.Max(maxFail, Math.Abs(ans2[i, j] - ans1[i, j]));
                         }
                     }
 

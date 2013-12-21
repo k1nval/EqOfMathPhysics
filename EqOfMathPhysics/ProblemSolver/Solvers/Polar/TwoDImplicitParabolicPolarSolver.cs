@@ -72,12 +72,12 @@ namespace ProblemSolver.Solvers.Polar
                     if (i == 0 || i == I || j == 0 || j == J)
                     {
                         A[i*(J + 1) + j, i*(J + 1) + j] = 1;
-                        B[i*(J + 1) + j] = problem.Psi(hal*i, hr*j, (firstLayer.Number + 1)*tau);
+                        B[i * (J + 1) + j] = problem.Psi(hr * j, hal * i, (firstLayer.Number + 1) * tau);
                     }
                     else
                     {
                         B[i * (J + 1) + j] = firstLayer[i,j];
-                        double ro = hr*(j);
+                        double ro = hr*(j + 1);
                         A[i * (J + 1) + j, i * (J + 1) + j] = 1 - (tau) / (ro * hr) + 2 * tau / (hr * hr) + 2 * tau / (ro * ro * hal * hal);
                         A[i * (J + 1) + j, (i + 1) * (J + 1) + j] = -tau / (ro * ro * hal * hal);
                         A[i * (J + 1) + j, (i - 1) * (J + 1) + j] = -tau / (ro * ro * hal * hal);
@@ -111,7 +111,7 @@ namespace ProblemSolver.Solvers.Polar
             {
                 for (int j = 0; j <= J; j++)
                 {
-                    layer[i, j] = problem.Fi(i * hal, j * hr);
+                    layer[i, j] = problem.Fi(j * hr, i * hal);
                 }
             }
 
