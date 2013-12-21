@@ -22,13 +22,13 @@ namespace ProblemSolver.Solvers.Polar
 
         public TwoDSplitParabolicPolarSolver(TwoDParabolicPolarProblem parabolicProblem, double nhr)
         {
-            hal = 2 * Math.PI / 10;
+            hal = 2 * Math.PI / 30;
             hr = nhr;
             problem = parabolicProblem;
             L = problem.L;
             J = (int)(L / hr);
             I = (int)(2 * Math.PI / hal);
-            tau = (hal * hal * hr * hr) / (4.0 * (hal * hal + hr * hr));
+            tau = 0.25 / (1 / (hr * hr) + 1 / (hal * hal * hr * hr) + 1 / (hr * hr * hr));
             //tau = 0.001;
         }
 
@@ -163,7 +163,7 @@ namespace ProblemSolver.Solvers.Polar
         double GetValue(int i, int j, TwoDLayer flayer, TwoDLayer slayer)
         {
             double ro = hr * (j + 1);
-            return flayer[i, j] + tau / (ro * ro * hal * hal) * (slayer[i + 1, j] - 2 * flayer[i, j] + flayer[i - 1, j]);
+            return flayer[i, j] + tau / (ro * ro * hal * hal) * (slayer[i + 1, j] - 2 * slayer[i, j] + slayer[i - 1, j]);
         }
         private TwoDLayer PrepareLayer()
         {
