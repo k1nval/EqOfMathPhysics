@@ -8,36 +8,9 @@ using ProblemSolver.Problems;
 
 namespace ProblemSolver.Solvers.Polar
 {
-    public class TwoDExplicitParabolicPolarSolver
+    public class TwoDExplicitParabolicPolarSolver : TwoDAbstractParabolicPolarSolver
     {
-        private ISystemSolver systemSolver = new DefaultSystemSolver();
-
-        private readonly TwoDParabolicPolarProblem problem;
-
-        private readonly double hal;
-
-        private readonly double hr;
-
-        private readonly double tau;
-
-        public TwoDExplicitParabolicPolarSolver(TwoDParabolicPolarProblem parabolicProblem, double nhr)
-        {
-            hal = 2 * Math.PI / 30;
-            hr = nhr;
-            problem = parabolicProblem;
-            L = problem.L;
-            J = (int)(L / hr);
-            I = (int)(2 * Math.PI / hal);
-            tau = 0.25 / (1 / (hr * hr) + 1 / (hal * hal * hr * hr) + 1 / (hr * hr * hr));
-            //tau = 0.001;
-        }
-
-        public double L { get; set; }
-
-        public int I { get; set; }
-
-        public int J { get; set; }
-        public TwoDLayer Solve(int needLayer)
+        public override TwoDLayer Solve(int needLayer)
         {
             if (needLayer == 0)
             {
@@ -109,21 +82,6 @@ namespace ProblemSolver.Solvers.Polar
             return layer[i, j] + tau/(ro*hr)*(layer[i, j] - layer[i, j - 1]) +
                    tau/(hr*hr)*(layer[i, j + 1] - 2*layer[i, j] + layer[i, j - 1]) +
                    tau/(ro*ro*hal*hal)*(layer[i + 1, j] - 2*layer[i, j] + layer[i - 1, j]);
-        }
-        private TwoDLayer PrepareLayer()
-        {
-            var layer = new TwoDLayer(I + 1, J + 1);
-            for (int i = 0; i <= I; i++)
-            {
-                for (int j = 0; j <= J; j++)
-                {
-                    layer[i, j] = problem.Fi(j * hr, i * hal);
-                }
-            }
-
-            layer.Number = 0;
-
-            return layer;
         }
     }
 }

@@ -117,7 +117,7 @@ namespace ConsoleUI
                 {
                     var maxFail = 0.00;
                     Console.WriteLine("Layer # {0}", ans.Number);
-                    Console.WriteLine("Explicit:        Implicit:       Splitting:      Failure(Splitting and Explicit):");
+                    Console.WriteLine("Explicit:        Implicit:       Splitting:      Failure(Splitting and Implicit):");
                     for (int i = 0; i < ans.Xy.GetLength(0); i++)
                     {
                         for (int j = 0; j < ans.Xy.GetLength(1); j++)

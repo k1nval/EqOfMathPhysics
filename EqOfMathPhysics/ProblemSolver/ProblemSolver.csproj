@@ -62,6 +62,7 @@
     <Compile Include="Solvers\ParabolicSplittingSolver.cs" />
     <Compile Include="Solvers\Polar\TwoDExplicitParabolicPolarSolver.cs" />
     <Compile Include="Solvers\Polar\TwoDImplicitParabolicPolarSolver.cs" />
+    <Compile Include="Solvers\Polar\TwoDAbstractParabolicPolarSolver.cs" />
     <Compile Include="Solvers\Polar\TwoDSplitParabolicPolarSolver.cs" />
     <Compile Include="Solvers\RotateSC\TwoDExplicitParabolicRotateSolver.cs" />
     <Compile Include="Solvers\RotateSC\TwoDSplitParabolicRotateSolver.cs" />
