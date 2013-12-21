@@ -1,4 +1,6 @@
-﻿namespace ConsoleUI
+﻿using ProblemSolver.Solvers.Polar;
+
+namespace ConsoleUI
 {
     using System;
 
@@ -13,7 +15,9 @@
 
            // Hyperbolic();
 
-            Splitting();
+            //Splitting();
+
+            Polar();
 
             Console.ReadKey();
         }
@@ -80,36 +84,28 @@
         {
             do
             {
-                Console.Write("h = ");
+                Console.Write("hr = ");
                 var h = double.Parse(Console.ReadLine());
 
                 Console.Write("L = ");
                 var L = double.Parse(Console.ReadLine());
 
-                Console.Write("M = ");
-                var M = double.Parse(Console.ReadLine());
-
                 Console.Write("J = ");
                 var J = int.Parse(Console.ReadLine());
 
-                var parabolicProblem = new TwoDParabolicProblem()
+                var parabolicProblem = new TwoDParabolicPolarProblem()
                 {
-                    H = h,
                     L = L,
-                    M = M,
-                    Fi = (x, y) => (2 * L) + y,
-                    Psi1 = (y, t) => y + t + (2 * L),
-                    Psi2 = (y, t) => (2 * L) + t + y,
-                    Psi3 = (x, t) => 2 * L,
-                    Psi4 = (x, t) => (2 * L) + M
+                    Fi = (r, al) => Math.Cos(r),
+                    Psi = (r, al, t) => Math.Cos(r) + Math.Sin(t)
                 };
-                var parabolicSolver = new ParabolicSplittingSolver(parabolicProblem, Math.PI / 4.0);
-                var parabolicSolver1 = new TwoDExplicitParabolicSolver(parabolicProblem, Math.PI / 4.0);
-                var parabolicSolver2 = new TwoDImplicitParabolicSolver(parabolicProblem);
+                var parabolicSolver = new TwoDExplicitParabolicPolarSolver(parabolicProblem, h);
+                //var parabolicSolver1 = new TwoDExplicitParabolicSolver(parabolicProblem, Math.PI / 4.0);
+                var parabolicSolver2 = new TwoDImplicitParabolicPolarSolver(parabolicProblem, h);
                 var ans = parabolicSolver.Solve(J);
-                var ans1 = parabolicSolver1.Solve(J);
+                var ans1 = ans;
                 var ans2 = parabolicSolver2.Solve(J);
-
+                var tmp = 666;
                 if (ans == null)
                 {
                     Console.WriteLine("Условия согласования не выполнены");

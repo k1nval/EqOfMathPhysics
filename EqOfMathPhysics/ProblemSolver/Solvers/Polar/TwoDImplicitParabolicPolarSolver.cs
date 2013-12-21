@@ -9,31 +9,31 @@ using ProblemSolver.Problems;
 
 namespace ProblemSolver.Solvers.Polar
 {
-    class TwoDImplicitParabolicPolarSolver
+    public class TwoDImplicitParabolicPolarSolver
     {
         private ISystemSolver systemSolver = new DefaultSystemSolver();
 
-        private readonly TwoDParabolicProblem problem;
+        private readonly TwoDParabolicPolarProblem problem;
+
+        private readonly double hal;
+
+        private readonly double hr;
 
         private readonly double tau;
 
-        private readonly double h;
-
-        public TwoDImplicitParabolicPolarSolver(TwoDParabolicPolarProblem parabolicProblem)
+        public TwoDImplicitParabolicPolarSolver(TwoDParabolicPolarProblem parabolicProblem, double nhr)
         {
-            
+            hal = 2 * Math.PI / 10;
+            hr = nhr;
             problem = parabolicProblem;
-            h = problem.H;
             L = problem.L;
-            M = problem.M;
-            I = (int)(L / h);
-            J = (int)(M / h);
-            tau = (h * h) / 4.0;
+            J = (int)(L / hr);
+            I = (int)(2 * Math.PI / hal);
+            tau = (hal * hal * hr * hr) / (4.0 * (hal * hal + hr * hr));
+            //tau = 0.001;
         }
 
         public double L { get; set; }
-
-        public double M { get; set; }
 
         public int I { get; set; }
 
@@ -41,11 +41,6 @@ namespace ProblemSolver.Solvers.Polar
 
         public TwoDLayer Solve(int needLayer)
         {
-            if (!problem.IsAgreed)
-            {
-                return null;
-            }
-
             if (needLayer == 0)
             {
                 return PrepareLayer();
@@ -77,16 +72,17 @@ namespace ProblemSolver.Solvers.Polar
                     if (i == 0 || i == I || j == 0 || j == J)
                     {
                         A[i*(J + 1) + j, i*(J + 1) + j] = 1;
-                        B[i*(J + 1) + j] = problem.Psi(h*i, h*j, (firstLayer.Number + 1)*tau);
+                        B[i*(J + 1) + j] = problem.Psi(hal*i, hr*j, (firstLayer.Number + 1)*tau);
                     }
                     else
                     {
-                        B[i*(J + 1) + j] = Math.Pow(h, 4) * firstLayer[i,j];
-                        A[i*(J + 1) + j, i*(J + 1) + j] = Math.Pow(h, 4) + 4*tau*h*h;
-                        A[i * (J + 1) + j, (i + 1) * (J + 1) + j] = -tau * h * h;
-                        A[i * (J + 1) + j, (i - 1) * (J + 1) + j] = -tau * h * h;
-                        A[i * (J + 1) + j, (i) * (J + 1) + (j + 1)] = -tau * h * h;
-                        A[i * (J + 1) + j, (i) * (J + 1) + (j - 1)] = -tau * h * h;
+                        B[i * (J + 1) + j] = firstLayer[i,j];
+                        double ro = hr*(j);
+                        A[i * (J + 1) + j, i * (J + 1) + j] = 1 - (tau) / (ro * hr) + 2 * tau / (hr * hr) + 2 * tau / (ro * ro * hal * hal);
+                        A[i * (J + 1) + j, (i + 1) * (J + 1) + j] = -tau / (ro * ro * hal * hal);
+                        A[i * (J + 1) + j, (i - 1) * (J + 1) + j] = -tau / (ro * ro * hal * hal);
+                        A[i * (J + 1) + j, (i) * (J + 1) + (j - 1)] = tau / (hr * ro) -tau  / (hr * hr);
+                        A[i * (J + 1) + j, (i) * (J + 1) + (j + 1)] = -tau / (hr * hr);
                     }
                 }
             }
@@ -115,7 +111,7 @@ namespace ProblemSolver.Solvers.Polar
             {
                 for (int j = 0; j <= J; j++)
                 {
-                    layer[i, j] = problem.Fi(i * h, j * h);
+                    layer[i, j] = problem.Fi(i * hal, j * hr);
                 }
             }
 
