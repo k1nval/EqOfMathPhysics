@@ -18,9 +18,9 @@ namespace ConsoleUI
 
             //Splitting();
 
-          //  Polar();
+            Polar();
 
-            Rotate();
+            //Rotate();
 
             Console.ReadKey();
         }
@@ -122,7 +122,7 @@ namespace ConsoleUI
                     {
                         for (int j = 0; j < ans.Xy.GetLength(1); j++)
                         {
-                            Console.WriteLine("{0:F6}   |   {1:F6}      |   {2:F6}  |   {3:F6}  |", ans1[i, j], ans2[i, j], ans[i, j], Math.Abs(ans1[i, j] - ans[i, j]));
+                            Console.WriteLine("{0:F6}   |   {1:F6}      |   {2:F6}  |   {3:F6}  |", ans1[i, j], ans2[i, j], ans[i, j], Math.Abs(ans1[i, j] - ans2[i, j]));
                             maxFail = Math.Max(maxFail, Math.Abs(ans2[i, j] - ans1[i, j]));
                         }
                     }
