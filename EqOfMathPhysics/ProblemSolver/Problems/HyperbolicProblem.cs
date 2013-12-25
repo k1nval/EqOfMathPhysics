@@ -36,7 +36,7 @@
 
         public bool Check()
         {
-            if (Math.Abs(psi1(0) - fi0(0)) < Eps && Math.Abs(psi2(L) - fil(0)) < Eps)
+            if (Math.Abs(psi1(0) - fi0(0)) < Eps && Math.Abs(psi1(L) - fil(0)) < Eps)
             {
                 return true;
             }

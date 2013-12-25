@@ -13,7 +13,7 @@
         private readonly double hx;
 
         public ExplicitHyperbolicSolver(HyperbolicProblem problem, double Hx)
-            : this(problem, Hx, Math.Sqrt(Hx * Hx / problem.A) / 2.0D)
+            : this(problem, Hx, Hx / problem.A / 2.0D)
         {
         }
 
@@ -83,7 +83,7 @@
 
         private double GetValue(Layer firstLayer, Layer secondLayer, int i)
         {
-            double al = (ht * ht) / (hx * hx);
+            double al = _problem.A * _problem.A * (ht * ht) / (hx * hx);
             return (al * secondLayer[i - 1]) + (2.0 * (1 - al) * secondLayer[i]) + (al * secondLayer[i + 1]) - firstLayer[i];
         }
 

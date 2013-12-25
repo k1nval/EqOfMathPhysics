@@ -13,11 +13,12 @@ namespace ConsoleUI
         public static void Main()
         {
             //Elliptic();
-
+            Hyperbolic();
+            
             //Splitting();
 
             //Polar();
-            Parabolic();
+            //Parabolic();
             //Rotate();
 
             Console.ReadKey();
@@ -198,19 +199,19 @@ namespace ConsoleUI
 
                 var hyperbolicProblem = new HyperbolicProblem()
                 {
-                    A = 1,
                     L = L,
+                    A = 12,
                     f = (x, t) => 0,
-                    fi0 = (t) => Math.Sin(t),
-                    fil = (t) => t + 6.0,
-                    psi1 = (x) => x * x,
-                    psi2 = (x) => 2.0
+                    fi0 = (t) => t,
+                    fil = (t) => t * t + L + Math.Sin(L),
+                    psi1 = (x) => x + Math.Sin(x),
+                    psi2 = (x) => 2,
                 };
 
                 int needLayer = J;
                 double maxFail = 0.0D;
-                var explicitSolver = new ExplicitHyperbolicSolver(hyperbolicProblem, h, h / 2.0);
-                var implicitSolver = new ImplicitHyperbolicSolver(hyperbolicProblem, h, h / 2.0);
+                var explicitSolver = new ExplicitHyperbolicSolver(hyperbolicProblem, h);
+                var implicitSolver = new ImplicitHyperbolicSolver(hyperbolicProblem, h);
                 var expl = explicitSolver.Solve(needLayer);
 
                 if (expl == null)

@@ -19,7 +19,7 @@
         private readonly double hx;
 
         public ImplicitHyperbolicSolver(HyperbolicProblem problem, double Hx)
-            : this(problem, Hx, Math.Sqrt(Hx * Hx / problem.A) / 2.0D)
+            : this(problem, Hx, Hx / problem.A / 2.0D)
         {
         }
 
@@ -95,7 +95,7 @@
             }
 
             var c = new List<double>();
-            for (int i = 0; i < Nx - 1; ++i)
+            for (int i = 0; i < Nx; ++i)
             {
                 if (i > 0)
                 {
@@ -120,7 +120,7 @@
                 }
                 else
                 {
-                    d.Add((2 * secondLayer[i]) - firstLayer[i] + problem.f(GetXValue(secondLayer.Number), GetTimeValue(secondLayer.Number + 1)));
+                    d.Add((2 * secondLayer[i]) - firstLayer[i] + problem.f(GetXValue(i), GetTimeValue(secondLayer.Number + 1)));
                 }
             }
 
