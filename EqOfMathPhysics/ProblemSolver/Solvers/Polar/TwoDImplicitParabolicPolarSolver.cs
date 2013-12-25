@@ -11,6 +11,10 @@ namespace ProblemSolver.Solvers.Polar
 {
     public class TwoDImplicitParabolicPolarSolver : TwoDAbstractParabolicPolarSolver
     {
+        public TwoDImplicitParabolicPolarSolver(TwoDParabolicPolarProblem parabolicProblem, double nhr)
+            : base(parabolicProblem, nhr)
+        {
+        }
         public override TwoDLayer Solve(int needLayer)
         {
             if (needLayer == 0)

@@ -19,13 +19,20 @@
 
         public Func<double, double, double> f { get; set; }
 
-        //U(x, 0)
+        /// <summary>
+        /// U(x, 0)
+        /// </summary>
+
         public Func<double, double> m0 { get; set; }
 
-        //U(0, t)
+        /// <summary>
+        /// U(0, t)
+        /// </summary>
         public Func<double, double> m1 { get; set; }
 
-        //U(L, t)
+        /// <summary>
+        /// U(L, t)
+        /// </summary>
         public Func<double, double> m2 { get; set; }
 
         public bool Check()

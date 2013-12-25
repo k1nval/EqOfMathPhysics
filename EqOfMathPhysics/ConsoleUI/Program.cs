@@ -14,12 +14,10 @@ namespace ConsoleUI
         {
             //Elliptic();
 
-           // Hyperbolic();
-
             //Splitting();
 
-            Polar();
-
+            //Polar();
+            Parabolic();
             //Rotate();
 
             Console.ReadKey();
@@ -213,6 +211,56 @@ namespace ConsoleUI
                 double maxFail = 0.0D;
                 var explicitSolver = new ExplicitHyperbolicSolver(hyperbolicProblem, h, h / 2.0);
                 var implicitSolver = new ImplicitHyperbolicSolver(hyperbolicProblem, h, h / 2.0);
+                var expl = explicitSolver.Solve(needLayer);
+
+                if (expl == null)
+                {
+                    Console.WriteLine("Условия согласования не выполнены");
+                    return;
+                }
+                var impl = implicitSolver.Solve(needLayer);
+
+                Console.WriteLine("Layer # {0}\nExplicit:    Implicit:    Failure", needLayer);
+                for (int i = 0; i < expl.X.Length; i++)
+                {
+
+                    Console.WriteLine("{0:F8} | {1:F8} | {2:F8}", expl[i], impl[i], Math.Abs(expl[i] - impl[i]));
+                    maxFail = Math.Max(maxFail, Math.Abs(expl[i] - impl[i]));
+                }
+
+                Console.WriteLine("\nMaximal fail = {0:F6}", maxFail);
+                Console.WriteLine(new string('-', 50) + Environment.NewLine);
+            }
+            while (true);
+        }
+
+        public static void Parabolic()
+        {
+            do
+            {
+                Console.Write("h = ");
+                var h = double.Parse(Console.ReadLine());
+
+                Console.Write("L = ");
+                var L = double.Parse(Console.ReadLine());
+
+                Console.Write("J = ");
+                var J = int.Parse(Console.ReadLine());
+
+                var parabolicProblem = new ParabolicProblem()
+                {
+                    K = 5,
+                    L = L,
+                    f = (x, t) => x * x + t,
+                    m0 = (x) => Math.Sin(x / L),
+                    m1 = (t) => t,
+                    m2 = (t) => Math.Sin(1),
+                };
+
+                int needLayer = J;
+                double maxFail = 0.0D;
+                var explicitSolver = new ExplicitParabolicSolver(parabolicProblem, h);
+                var implicitSolver = new ImplicitParabolicSolver(parabolicProblem, h);
                 var expl = explicitSolver.Solve(needLayer);
 
                 if (expl == null)

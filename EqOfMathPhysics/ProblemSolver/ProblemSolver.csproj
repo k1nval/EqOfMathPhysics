@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EllipticResult.cs" />
+    <Compile Include="Problems\ConvDiffProblem.cs" />
     <Compile Include="Problems\EllipticProblem.cs" />
     <Compile Include="Problems\Polar\TwoDParabolicPolarProblem.cs" />
     <Compile Include="Problems\TwoDParabolicProblem.cs" />
