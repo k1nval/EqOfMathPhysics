@@ -17,7 +17,6 @@
             {
                 case IterativeMethod.SimpleIterations:
                     // todo выполнить проверку на возможность приведения к типу
-                    // todo мб настроить IoC контейнер
                     return
                         new SimpleIterationsMethod(systemEquations, eps).Solve();
 

@@ -11,6 +11,11 @@
             X = new double[size];
         }
 
+        public Layer(double[] x)
+        {
+            X = x;
+        }
+
         public double[] X { get; set; }
 
         public int Number { get; set; }
