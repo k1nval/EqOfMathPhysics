@@ -1,4 +1,5 @@
-﻿using ProblemSolver.Solvers.ConvDiff;
+﻿using System.Globalization;
+using ProblemSolver.Solvers.ConvDiff;
 using ProblemSolver.Solvers.Polar;
 
 namespace ConsoleUI
@@ -15,7 +16,7 @@ namespace ConsoleUI
         public static void Main()
         {
             //Elliptic();
-            //Hyperbolic();
+            Hyperbolic();
             
             //Splitting();
 
@@ -24,7 +25,7 @@ namespace ConsoleUI
             //Rotate();
 
             //Acoustic();
-            ConvDiff();
+            //ConvDiff();
             Console.ReadKey();
         }
 
@@ -244,18 +245,18 @@ namespace ConsoleUI
                 var hyperbolicProblem = new HyperbolicProblem()
                 {
                     L = L,
-                    A = 12,
+                    A = 1,
                     f = (x, t) => 0,
-                    fi0 = (t) => t,
-                    fil = (t) => t * t + L + Math.Sin(L),
-                    psi1 = (x) => x + Math.Sin(x),
+                    fi0 = (t) => Math.Sin(t),
+                    fil = (t) => t + L * L,
+                    psi1 = (x) => x * x,
                     psi2 = (x) => 2,
                 };
 
                 int needLayer = J;
                 double maxFail = 0.0D;
-                var explicitSolver = new ExplicitHyperbolicSolver(hyperbolicProblem, h);
-                var implicitSolver = new ImplicitHyperbolicSolver(hyperbolicProblem, h);
+                var explicitSolver = new ExplicitHyperbolicSolver(hyperbolicProblem, h, h);
+                var implicitSolver = new ImplicitHyperbolicSolver(hyperbolicProblem, h, h);
                 var expl = explicitSolver.Solve(needLayer);
 
                 if (expl == null)
@@ -334,6 +335,7 @@ namespace ConsoleUI
             do
             {
                 Console.Write("h = ");
+                
                 var h = double.Parse(Console.ReadLine());
 
                 Console.Write("L = ");

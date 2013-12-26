@@ -20,7 +20,7 @@ namespace ProblemSolver.Solvers.ConvDiff
         {
             this.hx = hx;
             this.Nx = (int)(problem.L/hx + 1E-6);
-            this.ht = Math.Abs(hx / problem.a) / 2.0;
+            this.ht = hx / Math.Abs(problem.a) / 2.0;
             this.problem = problem;
         }
         private int Nx { get; set; }

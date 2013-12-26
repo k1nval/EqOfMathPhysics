@@ -7,11 +7,11 @@
 
     public interface ISystemSolver
     {
-        IterativeResult SolveSystem(ISystemEquations systemEquations, IterativeMethod method, double eps = 0.001);
+        IterativeResult SolveSystem(ISystemEquations systemEquations, IterativeMethod method, double eps = 0.00001);
 
         DirectResult SolveSystem(ISystemEquations systemEquations, DirectMethod methods);
 
-        IEnumerable<IterativeResult> SolveSystem(ISystemEquations systemEquations, IEnumerable<IterativeMethod> methods, double eps = 0.001);
+        IEnumerable<IterativeResult> SolveSystem(ISystemEquations systemEquations, IEnumerable<IterativeMethod> methods, double eps = 0.00001);
 
         IEnumerable<DirectResult> SolveSystem(ISystemEquations systemEquations, IEnumerable<DirectMethod> methods);
 

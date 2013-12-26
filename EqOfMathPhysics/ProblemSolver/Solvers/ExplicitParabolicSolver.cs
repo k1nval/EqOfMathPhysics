@@ -20,7 +20,7 @@
         {
             problem = parabolicProblem;
             hx = Hx;
-            Nx = (int)(problem.L / hx) + 1;
+            Nx = (int) (problem.L/hx + 1E-6 + 1);
             ht = Ht;
         }
 
