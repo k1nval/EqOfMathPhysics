@@ -3,6 +3,7 @@
     using System;
 
     using ProblemSolver.Problems;
+    using ProblemSolver.Solvers.Results;
 
     public class TwoDSplitParabolicRotateSolver : ISolver<TwoDLayer>
     {

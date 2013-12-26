@@ -1,6 +1,7 @@
 ﻿namespace ProblemSolver.Solvers
 {
     using ProblemSolver.Problems;
+    using ProblemSolver.Solvers.Results;
 
     public class ParabolicSplittingSolver : ISolver<TwoDLayer>
     {

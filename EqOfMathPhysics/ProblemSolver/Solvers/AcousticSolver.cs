@@ -1,14 +1,12 @@
 ﻿namespace ProblemSolver.Solvers
 {
-    using System;
-    using System.Collections.Generic;
-
     using SystemsEquationsSolver;
     using SystemsEquationsSolver.Methods;
 
     using ProblemSolver.Problems;
+    using ProblemSolver.Solvers.Results;
 
-    public class AcousticSolver : ISolver<Layer>
+    public class AcousticSolver : ISolver<AcousticResult>
     {
         private const int Size = 4;
 
@@ -38,9 +36,9 @@
 
         public int I { get; set; }
 
-        public Layer Solve(int needLayer)
+        public AcousticResult Solve(int needLayer)
         {
-            var result = new List<Layer>();
+            var result = new AcousticResult();
             var numberLayer = 0;
 
             Layer v;
@@ -55,23 +53,21 @@
                 var newT = new Layer(I - 1);
                 var newP = new Layer(I - 1);
                 var newV = new Layer(I - 1);
+                result.Add(new AcousticLayer { Number = numberLayer++, X = x.X, T = t.X, P = p.X, V = v.X});
+
                 for (int i = 0; i < I - 1; i++)
                 {
-                    result.Add(x);
-                    x.Number++;
-
                     var b = new double[Size];
                     b[0] = -t[i] + x[i];
                     b[1] = t[i + 1] + x[i + 1];
                     b[2] = p[i] - v[i];
                     b[3] = p[i + 1] + v[i + 1];
-                    
-                    // todo придется писать гаусса((
-                    //var answer = systemSolver.SolveSystem();
-                    /*newX[i] = answer[0];
+
+                    var answer = systemSolver.SolveSystem(new DefaultSystemEquations(a, b), DirectMethod.Gauss);
+                    newX[i] = answer[0];
                     newT[i] = answer[1];
                     newP[i] = answer[2];
-                    newV[i] = answer[3];*/
+                    newV[i] = answer[3];
                 }
 
                 x = new Layer(newX.X);
@@ -81,7 +77,7 @@
                 I--;
             }
 
-            return x;
+            return result;
         }
 
         public void PrepareLayer(out Layer v, out Layer p, out Layer x)
@@ -94,7 +90,7 @@
             {
                 v[i] = problem.Vx(i * h);
                 p[i] = problem.Px(i * h);
-                x[i] = problem.Fi(i * h);
+                x[i] = i * h;
             }
         }
     }

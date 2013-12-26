@@ -3,6 +3,7 @@
 namespace ConsoleUI
 {
     using System;
+    using System.Linq;
 
     using ProblemSolver.Problems;
     using ProblemSolver.Solvers;
@@ -13,7 +14,7 @@ namespace ConsoleUI
         public static void Main()
         {
             //Elliptic();
-            Hyperbolic();
+            //Hyperbolic();
             
             //Splitting();
 
@@ -21,7 +22,49 @@ namespace ConsoleUI
             //Parabolic();
             //Rotate();
 
+            Acoustic();
+
             Console.ReadKey();
+        }
+
+        public static void Acoustic()
+        {
+            do
+            {
+                Console.Write("h = ");
+                var h = double.Parse(Console.ReadLine());
+
+                Console.Write("L = ");
+                var l = double.Parse(Console.ReadLine());
+
+                var acousticProblem = new AcousticProblem()
+                                      {
+                                          H = h,
+                                          L = l,
+                                          Fi = (x) => (x * x) + x,
+                                          DFi_Dt = (x) => Math.Cos(x),
+                                          Vx = (x) => Math.Cos(x),
+                                          Px = (x) => (2.0 * x) + 1.0
+                                      };
+                var acousticSolver = new AcousticSolver(acousticProblem);
+                var ans = acousticSolver.Solve(1);
+
+                Console.WriteLine(ans.ToString());
+
+//                var k = 0;
+//                foreach (var layer in ans)
+//                {
+//                    Console.WriteLine("Layer #{0}", k);
+//                    for (int i = 0; i < layer.Count; i++)
+//                    {
+//                        Console.WriteLine("{0:F6}", layer[i]);
+//                    }
+//
+//                    Console.WriteLine(new string('-', 50));
+//                    k++;
+//                }
+            }
+            while (true);
         }
 
         public static void Rotate()

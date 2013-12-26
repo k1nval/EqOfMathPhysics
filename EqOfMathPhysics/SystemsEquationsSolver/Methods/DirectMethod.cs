@@ -2,6 +2,7 @@
 {
     public enum DirectMethod
     {
+        Gauss,
         Tridiag
     }
 }

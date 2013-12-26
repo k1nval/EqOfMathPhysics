@@ -7,6 +7,7 @@
     using SystemsEquationsSolver.Methods;
 
     using ProblemSolver.Problems;
+    using ProblemSolver.Solvers.Results;
 
     public class ImplicitHyperbolicSolver : ISolver<Layer>
     {

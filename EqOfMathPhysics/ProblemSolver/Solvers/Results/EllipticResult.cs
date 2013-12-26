@@ -1,4 +1,4 @@
-﻿namespace ProblemSolver
+﻿namespace ProblemSolver.Solvers.Results
 {
     public class EllipticResult
     {
@@ -16,7 +16,7 @@
         {
             get
             {
-                return ((double)CountSeidelIterations / CountSimpleIterations) * 100.0;
+                return ((double)this.CountSeidelIterations / this.CountSimpleIterations) * 100.0;
             }
         }
 
@@ -24,12 +24,12 @@
         {
             get
             {
-                if (Procent < 100)
+                if (this.Procent < 100)
                 {
-                    return "Метод Зейделя быстрей на " + (100 - (int)Procent) + "%";
+                    return "Метод Зейделя быстрей на " + (100 - (int)this.Procent) + "%";
                 }
 
-                return "Метод простой итерации быстрей на " + (int)Procent + "%";
+                return "Метод простой итерации быстрей на " + (int)this.Procent + "%";
             }
         }
     }

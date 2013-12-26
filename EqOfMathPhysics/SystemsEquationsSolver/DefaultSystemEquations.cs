@@ -1,6 +1,7 @@
 ﻿namespace SystemsEquationsSolver
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     public class DefaultSystemEquations : ISystemEquations
     {
@@ -17,5 +18,13 @@
         public double[,] Matrix { get; set; }
 
         public IEnumerable<double> B { get; set; }
+
+        public int Count
+        {
+            get
+            {
+                return B.Count();
+            }
+        }
     }
 }

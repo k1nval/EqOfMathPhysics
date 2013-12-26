@@ -1,10 +1,10 @@
-﻿namespace ProblemSolver
+﻿namespace ProblemSolver.Solvers.Results
 {
     public class TwoDLayer
     {
         public TwoDLayer(int n, int m)
         {
-            Xy = new double[n, m];
+            this.Xy = new double[n, m];
         }
 
         public double[,] Xy { get; set; }
@@ -13,8 +13,8 @@
 
         public double this[int i, int j]
         {
-            get { return Xy[i, j]; }
-            set { Xy[i, j] = value; }
+            get { return this.Xy[i, j]; }
+            set { this.Xy[i, j] = value; }
         }
     }
 }

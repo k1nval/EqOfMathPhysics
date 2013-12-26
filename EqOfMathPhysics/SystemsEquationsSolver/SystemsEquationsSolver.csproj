@@ -46,6 +46,7 @@
     <Compile Include="Methods\Abstract\IDirectMethods.cs" />
     <Compile Include="Methods\Abstract\IIterativeMethods.cs" />
     <Compile Include="Methods\DirectMethod.cs" />
+    <Compile Include="Methods\Directs\Gauss.cs" />
     <Compile Include="Methods\Directs\TridiagonalMethod.cs" />
     <Compile Include="Methods\IterativeMethod.cs" />
     <Compile Include="Methods\Iteratives\JacobiMethods\JacobiMethodsAbstract.cs" />

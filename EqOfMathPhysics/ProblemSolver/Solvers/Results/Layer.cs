@@ -1,4 +1,4 @@
-﻿namespace ProblemSolver
+﻿namespace ProblemSolver.Solvers.Results
 {
     public class Layer
     {
@@ -8,22 +8,30 @@
 
         public Layer(int size)
         {
-            X = new double[size];
+            this.X = new double[size];
         }
 
         public Layer(double[] x)
         {
-            X = x;
+            this.X = x;
         }
 
         public double[] X { get; set; }
 
         public int Number { get; set; }
 
+        public int Count
+        {
+            get
+            {
+                return this.X.Length;
+            }
+        }
+
         public double this[int i]
         {
-            get { return X[i]; }
-            set { X[i] = value; }
+            get { return this.X[i]; }
+            set { this.X[i] = value; }
         }
     }
 }

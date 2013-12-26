@@ -8,6 +8,8 @@ using ProblemSolver.Problems;
 
 namespace ProblemSolver.Solvers.Polar
 {
+    using ProblemSolver.Solvers.Results;
+
     public class TwoDExplicitParabolicPolarSolver : TwoDAbstractParabolicPolarSolver
     {
         public TwoDExplicitParabolicPolarSolver(TwoDParabolicPolarProblem parabolicProblem, double nhr)

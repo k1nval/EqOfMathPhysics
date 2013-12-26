@@ -7,6 +7,8 @@ using ProblemSolver.Problems;
 using MathNet.Numerics.LinearAlgebra.Double.Solvers.Iterative;
 namespace ProblemSolver.Solvers
 {
+    using ProblemSolver.Solvers.Results;
+
     public class TwoDImplicitParabolicSolver
     {
         private ISystemSolver systemSolver = new DefaultSystemSolver();

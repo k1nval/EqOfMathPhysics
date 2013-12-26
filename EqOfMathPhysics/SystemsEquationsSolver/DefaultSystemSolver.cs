@@ -35,6 +35,9 @@
                 case DirectMethod.Tridiag:
                     return new TridiagonalMethod((TridiagonalSystemEquations)systemEquations).Solve();
 
+                case DirectMethod.Gauss:
+                    return new Gauss((DefaultSystemEquations)systemEquations).Solve();
+
                 default:
                     return null;
             }

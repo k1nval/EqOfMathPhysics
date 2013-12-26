@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EllipticResult.cs" />
+    <Compile Include="Solvers\Results\AcousticResult.cs" />
+    <Compile Include="Solvers\Results\EllipticResult.cs" />
     <Compile Include="Problems\AcousticProblem.cs" />
     <Compile Include="Problems\ConvDiffProblem.cs" />
     <Compile Include="Problems\EllipticProblem.cs" />
@@ -58,7 +59,7 @@
     <Compile Include="Problems\IProblem.cs" />
     <Compile Include="Solvers\ISolver.cs" />
     <Compile Include="Problems\HyperbolicProblem.cs" />
-    <Compile Include="Layer.cs" />
+    <Compile Include="Solvers\Results\Layer.cs" />
     <Compile Include="Problems\ParabolicProblem.cs" />
     <Compile Include="Solvers\ExplicitParabolicSolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="Solvers\RotateSC\TwoDSplitParabolicRotateSolver.cs" />
     <Compile Include="Solvers\TwoDExplicitParabolicSolver.cs" />
     <Compile Include="Solvers\TwoDImplicitParabolicSolver.cs" />
-    <Compile Include="TwoDLayer.cs" />
+    <Compile Include="Solvers\Results\TwoDLayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SystemsEquationsSolver\SystemsEquationsSolver.csproj">
