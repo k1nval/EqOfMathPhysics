@@ -20,7 +20,6 @@ C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\o
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\SystemsEquationsSolver.dll
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\SystemsEquationsSolver.pdb
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.dll
-C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.pdb
 C:\Users\k1nval\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.xml
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.dll
 C:\Users\AIRAT\Documents\GitHub\EqOfMathPhysics\EqOfMathPhysics\ProblemSolver\bin\Debug\MathNet.Numerics.pdb
