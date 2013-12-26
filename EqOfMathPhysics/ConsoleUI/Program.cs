@@ -16,7 +16,7 @@ namespace ConsoleUI
         public static void Main()
         {
             //Elliptic();
-            Hyperbolic();
+            //Hyperbolic();
             
             //Splitting();
 
@@ -25,7 +25,7 @@ namespace ConsoleUI
             //Rotate();
 
             //Acoustic();
-            //ConvDiff();
+            ConvDiff();
             Console.ReadKey();
         }
 
@@ -346,11 +346,11 @@ namespace ConsoleUI
 
                 var convProblem = new ConvDiffProblem()
                 {
-                    a = -1,
+                    a = 20,
                     L = L,
-                    f = (x, t) => x * x + t,
+                    f = (x, t) => Math.Cos(x) * Math.Sin(t),
                     psi = (t) => t,
-                    U0 = (x) => 0
+                    U0 = (x) => Math.Sin(x * Math.PI / L)
                 };
 
                 int needLayer = J;
